@@ -299,6 +299,11 @@ window.LP_CONFIG = (function () {
     bookEl.scrollIntoView({behavior:"smooth",block:"center"});
   }
 
+  // Apre il calendario toccando tutto il campo data (non solo l'iconcina)
+  function openDatePicker(){ try{ if(typeof dateEl.showPicker==="function") dateEl.showPicker(); }catch(e){} }
+  dateEl.addEventListener("click",openDatePicker);
+  dateEl.addEventListener("focus",openDatePicker);
+
   dateEl.addEventListener("change",renderSlots);
   peopleEl.addEventListener("change",renderSlots);
   nameEl.addEventListener("input",validate);
