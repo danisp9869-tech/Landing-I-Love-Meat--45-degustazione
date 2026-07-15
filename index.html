@@ -100,7 +100,8 @@ img{max-width:100%;display:block}
 .foot .addr{margin-top:6px}
 
 /* ---- STICKY ---- */
-.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,rgba(8,7,6,1) 60%,rgba(8,7,6,.85));border-top:1px solid var(--line)}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,rgba(8,7,6,1) 60%,rgba(8,7,6,.85));border-top:1px solid var(--line);transition:opacity .25s ease,transform .25s ease}
+.sticky-cta.hidden{opacity:0;transform:translateY(100%);pointer-events:none}
 .sticky-btn{display:block;max-width:560px;margin:0 auto;text-align:center;padding:16px;border-radius:12px;background:var(--red);color:#fff;font-size:18px;font-weight:800;text-decoration:none;box-shadow:0 6px 22px rgba(209,40,31,.45)}
 .sticky-btn:hover{background:var(--red-d)}
 
@@ -310,6 +311,16 @@ window.LP_CONFIG = (function () {
   phoneEl.addEventListener("input",validate);
   ctaEl.addEventListener("click",submit);
   var cl=$("call-link"); if(cl) cl.href="tel:"+PHONE;
+
+  // Nasconde il bottone fisso in basso quando il form è visibile (niente doppio bottone)
+  var stickyEl=document.querySelector(".sticky-cta");
+  if(stickyEl && "IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ stickyEl.classList.toggle("hidden",en.isIntersecting); });
+    },{threshold:0.2});
+    io.observe(bookEl);
+  }
+
   renderSlots();
 })();
 </script>
