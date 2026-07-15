@@ -98,6 +98,8 @@ img{max-width:100%;display:block}
 
 .foot{text-align:center;color:var(--muted);font-size:13px;padding:22px 0 34px}
 .foot .addr{margin-top:6px}
+.foot .address{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:11px 18px;border:1px solid rgba(233,196,106,.45);border-radius:999px;color:var(--gold);font-size:15px;font-weight:700;text-decoration:none}
+.foot .address:hover{background:rgba(233,196,106,.08)}
 
 /* ---- STICKY ---- */
 .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,rgba(8,7,6,1) 60%,rgba(8,7,6,.85));border-top:1px solid var(--line);transition:opacity .25s ease,transform .25s ease}
@@ -189,7 +191,8 @@ img{max-width:100%;display:block}
   </section>
 
   <div class="foot">
-    <div><b>I Love Meat</b> · Pianezza (TO)</div>
+    <div><b>I Love Meat</b></div>
+    <a class="address" href="https://www.google.com/maps/search/?api=1&query=Largo+II+Giugno+2+Pianezza+TO" target="_blank" rel="noopener">📍 Largo II Giugno 2, Pianezza (TO)</a>
     <div class="addr">Lun–Dom 12:00–14:00 / 19:30–00:00 · Chiuso sabato a pranzo</div>
   </div>
 </main>
