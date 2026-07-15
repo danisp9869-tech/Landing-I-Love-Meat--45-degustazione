@@ -78,7 +78,11 @@ img{max-width:100%;display:block}
 .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600}
 .field input,.field select{width:100%;padding:13px 12px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:16px}
 .field input:focus,.field select:focus{outline:none;border-color:var(--gold)}
-.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slots{display:block}
+.slots-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.slot-group-label{color:var(--gold);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px}
+.slot-group-label:first-child{margin-top:0}
+.slot-note{color:#ff9d90;font-size:12.5px;margin-bottom:12px;padding:8px 12px;background:rgba(209,40,31,.12);border:1px solid rgba(209,40,31,.4);border-radius:10px}
 .slot{flex:1 1 28%;min-width:74px;text-align:center;padding:11px 6px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;transition:.12s}
 .slot:hover{border-color:var(--gold)}
 .slot.sel{background:var(--red);border-color:var(--red);color:#fff}
@@ -196,12 +200,14 @@ img{max-width:100%;display:block}
 window.LP_CONFIG = (function () {
   var t = new Date(); t.setDate(t.getDate() + 1);
   var domani = t.toISOString().slice(0, 10);
-  var booked = {}; booked[domani] = { "20:00": 70, "20:30": 79 };
+  var booked = {}; booked[domani] = { "20:00": 52, "20:30": 58 };
   return {
-    capacity: 80,        // coperti totali (DA CONFERMARE)
+    capacity: 60,        // coperti totali (pranzo + cena)
     gap: 0,              // margine oltre la capienza (0 = mai overbooking)
     phone: "+393456881360",
-    slots: ["19:30","20:00","20:30","21:00","21:30","22:00"],
+    // Orari I Love Meat: Lun–Dom 12:00–14:00 / 19:30–00:00 · Sabato pranzo chiuso
+    lunch: ["12:00","12:30","13:00","13:30","14:00"],
+    dinner: ["19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30"],
     offerName: "Menu Degustazione 45€",
     booked: booked
   };
@@ -213,7 +219,8 @@ window.LP_CONFIG = (function () {
   var CAPACITY = C.capacity != null ? C.capacity : 80;
   var GAP = C.gap != null ? C.gap : 0;
   var PHONE = C.phone || "+393456881360";
-  var SLOTS = C.slots || ["19:30","20:00","20:30","21:00","21:30","22:00"];
+  var LUNCH = C.lunch || ["12:00","12:30","13:00","13:30","14:00"];
+  var DINNER = C.dinner || ["19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30"];
   var BOOKED = C.booked || {};
   var $ = function (id) { return document.getElementById(id); };
   var dateEl=$("data"),peopleEl=$("persone"),slotsEl=$("slots"),slotInput=$("orario"),
@@ -232,16 +239,36 @@ window.LP_CONFIG = (function () {
     var date=dateEl.value, people=parseInt(peopleEl.value,10)||0;
     slotInput.value=""; slotsEl.innerHTML="";
     if(!date||!people) return;
-    SLOTS.forEach(function(slot){
-      var full=(bookedFor(date,slot)+people)>(CAPACITY+GAP);
-      var el=document.createElement("div");
-      el.className="slot"+(full?" full":"");
-      el.innerHTML=full?(slot+'<span class="tag">esaurito</span>'):slot;
-      if(!full){el.addEventListener("click",function(){
-        var s=document.querySelectorAll(".slot.sel"); for(var i=0;i<s.length;i++)s[i].classList.remove("sel");
-        el.classList.add("sel"); slotInput.value=slot; validate();
-      });}
-      slotsEl.appendChild(el);
+
+    var p=date.split("-"); var dow=new Date(+p[0],+p[1]-1,+p[2]).getDay(); // 0=dom … 6=sab
+    var saturday=(dow===6);
+
+    if(saturday){
+      var note=document.createElement("div"); note.className="slot-note";
+      note.textContent="Sabato il pranzo è chiuso: disponibile solo a cena.";
+      slotsEl.appendChild(note);
+    }
+
+    var groups=[];
+    if(!saturday) groups.push({label:"Pranzo",slots:LUNCH}); // sabato pranzo chiuso
+    groups.push({label:"Cena",slots:DINNER});
+
+    groups.forEach(function(g){
+      var h=document.createElement("div"); h.className="slot-group-label"; h.textContent=g.label;
+      slotsEl.appendChild(h);
+      var row=document.createElement("div"); row.className="slots-row";
+      g.slots.forEach(function(slot){
+        var full=(bookedFor(date,slot)+people)>(CAPACITY+GAP);
+        var el=document.createElement("div");
+        el.className="slot"+(full?" full":"");
+        el.innerHTML=full?(slot+'<span class="tag">esaurito</span>'):slot;
+        if(!full){el.addEventListener("click",function(){
+          var s=document.querySelectorAll(".slot.sel"); for(var i=0;i<s.length;i++)s[i].classList.remove("sel");
+          el.classList.add("sel"); slotInput.value=slot; validate();
+        });}
+        row.appendChild(el);
+      });
+      slotsEl.appendChild(row);
     });
     validate();
   }
