@@ -227,9 +227,17 @@ Nginx, **cancellando** sul server i file non più presenti nel repo. Restano esc
    ```bash
    ssh-keygen -t ed25519 -f deploy_key -C "github-actions-deploy" -N ""
    ```
-   Aggiungi la **chiave pubblica** (`deploy_key.pub`) al server:
+   Aggiungi poi la **chiave pubblica** (`deploy_key.pub`) al server. Dato che
+   l'utente `deploy` non ha password (`--disabled-password`), `ssh-copy-id` **non**
+   funziona (non potrebbe autenticarsi per installare la chiave). Installa la chiave
+   **manualmente** da un utente con `sudo` sul server:
    ```bash
-   ssh-copy-id -i deploy_key.pub deploy@IP_DEL_SERVER
+   sudo mkdir -p /home/deploy/.ssh
+   # incolla il contenuto di deploy_key.pub in questo file:
+   sudo nano /home/deploy/.ssh/authorized_keys
+   sudo chown -R deploy:deploy /home/deploy/.ssh
+   sudo chmod 700 /home/deploy/.ssh
+   sudo chmod 600 /home/deploy/.ssh/authorized_keys
    ```
 
 ### Segreti da impostare su GitHub
