@@ -30,6 +30,9 @@ jobs:
           chmod 700 ~/.ssh
           printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+          # Rimuove spazi/newline/CR eventualmente incollati nei segreti
+          VPS_HOST="$(printf '%s' "$VPS_HOST" | tr -d '[:space:]')"
+          VPS_PORT="$(printf '%s' "$VPS_PORT" | tr -d '[:space:]')"
           # Se non è impostata la porta, usa la 22 di default
           ssh-keyscan -p "${VPS_PORT:-22}" -H "$VPS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
@@ -40,6 +43,14 @@ jobs:
           VPS_PORT: ${{ secrets.VPS_PORT }}
           VPS_TARGET_DIR: ${{ secrets.VPS_TARGET_DIR }}
         run: |
+          # Rimuove eventuali spazi/newline/CR dai segreti: un solo carattere
+          # a-capo (facile da incollare per errore) spezza il comando remoto e
+          # fa fallire rsync con "bash: line 2: /: Is a directory" (exit 126).
+          VPS_HOST="$(printf '%s' "$VPS_HOST" | tr -d '[:space:]')"
+          VPS_USER="$(printf '%s' "$VPS_USER" | tr -d '[:space:]')"
+          VPS_PORT="$(printf '%s' "$VPS_PORT" | tr -d '[:space:]')"
+          VPS_TARGET_DIR="$(printf '%s' "$VPS_TARGET_DIR" | tr -d '[:space:]')"
+
           # --delete: rimuove sul server i file non più presenti nel repo
           # gli --exclude tengono fuori tutto ciò che non fa parte del sito
           rsync -avz --delete \
