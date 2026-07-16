@@ -10,19 +10,19 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var p = e.parameter || {};
 
-    // Scheda in base al turno: "Pranzo" o "Cena" (default Cena)
-    var tabName = (p.turno === 'Pranzo') ? 'Pranzo' : 'Cena';
-    var sheet = ss.getSheetByName(tabName) || ss.insertSheet(tabName);
+    // Tutte le prenotazioni di questa landing in un'unica lista
+    var sheet = ss.getSheetByName('Prenotazioni') || ss.insertSheet('Prenotazioni');
 
     // Intestazioni alla prima riga (solo se la scheda è vuota)
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Ricevuta il', 'Data', 'Persone', 'Orario', 'Nome', 'Telefono', 'Offerta']);
+      sheet.appendRow(['Ricevuta il', 'Data', 'Turno', 'Persone', 'Orario', 'Nome', 'Telefono', 'Offerta']);
       sheet.setFrozenRows(1);
     }
 
     sheet.appendRow([
       new Date(),
       p.data || '',
+      p.turno || '',
       p.persone || '',
       p.orario || '',
       p.nome || '',
