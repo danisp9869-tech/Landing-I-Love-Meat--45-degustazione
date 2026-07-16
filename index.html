@@ -316,8 +316,9 @@ window.LP_CONFIG = (function () {
 
     // Invia la prenotazione al Google Sheet (Apps Script)
     ctaEl.disabled=true; ctaEl.textContent="Invio in corso…";
+    var turno = (LUNCH.indexOf(slot) >= 0) ? "Pranzo" : "Cena"; // scheda del foglio
     var body=new URLSearchParams({
-      data:date, persone:people, orario:slot, nome:nome, telefono:tel, offerta:OFFER
+      data:date, persone:people, orario:slot, nome:nome, telefono:tel, offerta:OFFER, turno:turno
     });
     fetch(SHEET_URL,{method:"POST",mode:"no-cors",body:body})
       .then(function(){ showSuccess(date,people,slot,nome,tel); })

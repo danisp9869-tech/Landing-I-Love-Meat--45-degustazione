@@ -8,15 +8,18 @@ function doPost(e) {
   lock.waitLock(30000); // evita scritture sovrapposte
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName('Prenotazioni') || ss.insertSheet('Prenotazioni');
+    var p = e.parameter || {};
 
-    // Intestazioni alla prima riga (solo se il foglio è vuoto)
+    // Scheda in base al turno: "Pranzo" o "Cena" (default Cena)
+    var tabName = (p.turno === 'Pranzo') ? 'Pranzo' : 'Cena';
+    var sheet = ss.getSheetByName(tabName) || ss.insertSheet(tabName);
+
+    // Intestazioni alla prima riga (solo se la scheda è vuota)
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(['Ricevuta il', 'Data', 'Persone', 'Orario', 'Nome', 'Telefono', 'Offerta']);
       sheet.setFrozenRows(1);
     }
 
-    var p = e.parameter || {};
     sheet.appendRow([
       new Date(),
       p.data || '',
