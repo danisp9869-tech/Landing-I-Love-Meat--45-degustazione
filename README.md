@@ -184,6 +184,85 @@ create table bookings (
 
 ---
 
+## 5. Deploy su un VPS proprio (Nginx via SSH)
+
+In alternativa a GitHub Pages, il sito può essere pubblicato su un **tuo server**
+(una VPS con **Nginx**). Il workflow `.github/workflows/deploy-vps.yml` copia i file
+sul server via **SSH + rsync** a ogni push su `main` (o manualmente da **Actions →
+"Deploy landing su VPS" → Run workflow**).
+
+> ℹ️ GitHub Pages e VPS **coesistono**: sono due workflow indipendenti. Se usi solo
+> la VPS puoi eliminare (o disattivare) `deploy-pages.yml`, e viceversa.
+
+### Cosa fa
+`rsync -avz --delete` sincronizza il contenuto del repo nella cartella servita da
+Nginx, **cancellando** sul server i file non più presenti nel repo. Restano esclusi
+`.git`, `.github`, `.gitattributes` e `README.md` (non fanno parte del sito).
+
+### Preparazione del server (una volta)
+1. Crea l'**utente di deploy** (senza password: accederà solo via chiave SSH) e
+   aggiungilo al gruppo `www-data`, così potrà scrivere nella cartella servita da Nginx:
+   ```bash
+   sudo adduser --disabled-password --gecos "" deploy
+   sudo usermod -aG www-data deploy
+   ```
+2. Crea la cartella del sito, es. `sudo mkdir -p /var/www/landing` e assegnala
+   all'utente di deploy (rendendola scrivibile dal gruppo):
+   ```bash
+   sudo chown -R deploy:www-data /var/www/landing
+   sudo chmod -R 775 /var/www/landing
+   ```
+3. Configura un **virtual host** Nginx che punti a quella cartella:
+   ```nginx
+   server {
+       listen 80;
+       server_name esempio.it www.esempio.it;
+       root /var/www/landing;
+       index index.html;
+   }
+   ```
+   Poi `sudo nginx -t && sudo systemctl reload nginx` (e, consigliato, HTTPS con
+   `certbot --nginx`).
+4. Crea una **coppia di chiavi SSH dedicata** al deploy (sul tuo PC):
+   ```bash
+   ssh-keygen -t ed25519 -f deploy_key -C "github-actions-deploy" -N ""
+   ```
+   Aggiungi poi la **chiave pubblica** (`deploy_key.pub`) al server. Dato che
+   l'utente `deploy` non ha password (`--disabled-password`), `ssh-copy-id` **non**
+   funziona (non potrebbe autenticarsi per installare la chiave). Installa la chiave
+   **manualmente** da un utente con `sudo` sul server:
+   ```bash
+   sudo mkdir -p /home/deploy/.ssh
+   # incolla il contenuto di deploy_key.pub in questo file:
+   sudo nano /home/deploy/.ssh/authorized_keys
+   sudo chown -R deploy:deploy /home/deploy/.ssh
+   sudo chmod 700 /home/deploy/.ssh
+   sudo chmod 600 /home/deploy/.ssh/authorized_keys
+   ```
+
+### Segreti da impostare su GitHub
+Repo → **Settings → Secrets and variables → Actions → New repository secret**:
+
+| Secret | Cosa contiene | Esempio |
+|---|---|---|
+| `VPS_HOST` | IP o hostname del server | `203.0.113.10` |
+| `VPS_USER` | utente SSH di deploy | `deploy` |
+| `VPS_SSH_KEY` | contenuto della **chiave privata** `deploy_key` (tutto il file) | `-----BEGIN OPENSSH PRIVATE KEY-----…` |
+| `VPS_TARGET_DIR` | cartella servita da Nginx | `/var/www/landing` |
+| `VPS_PORT` | *(opzionale)* porta SSH, se diversa da 22 | `2222` |
+
+> ⚠️ In `VPS_SSH_KEY` incolla la chiave **privata** (`deploy_key`, non `.pub`),
+> completa delle righe `BEGIN`/`END`. L'utente `VPS_USER` deve avere permessi di
+> scrittura su `VPS_TARGET_DIR`.
+
+### Test
+Dopo aver impostato i segreti: fai un push su `main` (o avvia il workflow a mano) e
+controlla il log in **Actions**. Se rsync fallisce con *"Host key verification"* o
+*"Permission denied"*, verifica host/porta e che la **chiave pubblica** sia negli
+`~/.ssh/authorized_keys` dell'utente sul server.
+
+---
+
 ## Requisiti coperti
 - ✅ Single file HTML autonomo, zero build, apribile con doppio click.
 - ✅ Responsive mobile-first, accessibile (label, focus states, aria).
