@@ -15,19 +15,20 @@ function doPost(e) {
 
     // Intestazioni alla prima riga (solo se la scheda è vuota)
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Ricevuta il', 'Data', 'Turno', 'Persone', 'Orario', 'Nome', 'Telefono', 'Offerta']);
+      sheet.appendRow(['Data', 'Ora', 'Persone', 'Nome', 'Telefono', 'Email', 'Richieste', 'Privacy', 'Creata']);
       sheet.setFrozenRows(1);
     }
 
     sheet.appendRow([
-      new Date(),
       p.data || '',
-      p.turno || '',
+      p.ora || '',
       p.persone || '',
-      p.orario || '',
       p.nome || '',
       p.telefono || '',
-      p.offerta || ''
+      p.email || '',
+      p.richieste || '',
+      p.privacy || '',
+      new Date()
     ]);
 
     return ContentService

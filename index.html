@@ -91,6 +91,10 @@ img{max-width:100%;display:block}
 .slot.full{opacity:.38;cursor:not-allowed;text-decoration:line-through;color:var(--muted)}
 .slot .tag{display:block;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 .slot.full .tag{color:var(--red-d)}
+.field .opt{color:var(--muted);font-weight:400}
+.privacy{display:flex;align-items:flex-start;gap:10px;margin:2px 0 16px;color:var(--muted);font-size:13px;line-height:1.45;cursor:pointer}
+.privacy input{flex:0 0 auto;width:18px;height:18px;margin-top:1px;accent-color:var(--red);cursor:pointer}
+.privacy a{color:var(--gold);text-decoration:underline}
 .cta{display:block;width:100%;text-align:center;padding:16px;border:none;border-radius:12px;background:var(--red);color:#fff;font-size:18px;font-weight:800;cursor:pointer;margin-top:4px;box-shadow:0 6px 20px rgba(209,40,31,.35)}
 .cta:hover{background:var(--red-d)}
 .cta:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
@@ -184,6 +188,18 @@ img{max-width:100%;display:block}
       <label for="telefono">Telefono</label>
       <input type="tel" id="telefono" autocomplete="tel" placeholder="Es. 345 688 1360" required>
     </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" autocomplete="email" placeholder="La tua email">
+    </div>
+    <div class="field">
+      <label for="richieste">Richieste particolari <span class="opt">(facoltativo)</span></label>
+      <input type="text" id="richieste" placeholder="Allergie, seggiolone, tavolo esterno…">
+    </div>
+    <label class="privacy" for="privacy">
+      <input type="checkbox" id="privacy">
+      <span>Ho letto e accetto la <a href="privacy.html" target="_blank" rel="noopener">privacy policy</a> per la gestione della prenotazione.</span>
+    </label>
 
     <button class="cta" id="cta" disabled>Prenota il tavolo</button>
     <div class="err" id="err"></div>
@@ -235,7 +251,8 @@ window.LP_CONFIG = (function () {
   var BOOKED = C.booked || {};
   var $ = function (id) { return document.getElementById(id); };
   var dateEl=$("data"),peopleEl=$("persone"),slotsEl=$("slots"),slotInput=$("orario"),
-      nameEl=$("nome"),phoneEl=$("telefono"),ctaEl=$("cta"),errEl=$("err"),bookEl=$("book");
+      nameEl=$("nome"),phoneEl=$("telefono"),emailEl=$("email"),richiesteEl=$("richieste"),
+      privacyEl=$("privacy"),ctaEl=$("cta"),errEl=$("err"),bookEl=$("book");
 
   var today=new Date(); today.setHours(0,0,0,0);
   var iso=function(d){return d.toISOString().slice(0,10);};
@@ -285,7 +302,7 @@ window.LP_CONFIG = (function () {
   }
 
   function validate(){
-    var ok=dateEl.value&&peopleEl.value&&slotInput.value&&nameEl.value.trim().length>=2&&phoneEl.value.trim().length>=6;
+    var ok=dateEl.value&&peopleEl.value&&slotInput.value&&nameEl.value.trim().length>=2&&phoneEl.value.trim().length>=6&&privacyEl.checked;
     if(ctaEl) ctaEl.disabled=!ok; return ok;
   }
   function fmtDate(s){var p=s.split("-");return p[2]+"/"+p[1]+"/"+p[0];}
@@ -307,18 +324,19 @@ window.LP_CONFIG = (function () {
   }
 
   function submit(){
-    if(!validate()){errEl.textContent="Compila data, persone, orario, nome e telefono.";return;}
+    if(!validate()){errEl.textContent="Compila i campi obbligatori e accetta la privacy.";return;}
     errEl.textContent="";
-    var date=dateEl.value,people=peopleEl.value,slot=slotInput.value,nome=nameEl.value.trim(),tel=phoneEl.value.trim();
+    var date=dateEl.value,people=peopleEl.value,slot=slotInput.value,nome=nameEl.value.trim(),tel=phoneEl.value.trim(),
+        email=emailEl.value.trim(),richieste=richiesteEl.value.trim();
 
     // Se non è ancora configurato il foglio, mostra comunque la conferma
     if(!SHEET_URL){ showSuccess(date,people,slot,nome,tel); return; }
 
     // Invia la prenotazione al Google Sheet (Apps Script)
     ctaEl.disabled=true; ctaEl.textContent="Invio in corso…";
-    var turno = (LUNCH.indexOf(slot) >= 0) ? "Pranzo" : "Cena"; // scheda del foglio
     var body=new URLSearchParams({
-      data:date, persone:people, orario:slot, nome:nome, telefono:tel, offerta:OFFER, turno:turno
+      data:date, ora:slot, persone:people, nome:nome, telefono:tel,
+      email:email, richieste:richieste, privacy:(privacyEl.checked?"Sì":"No")
     });
     fetch(SHEET_URL,{method:"POST",mode:"no-cors",body:body})
       .then(function(){ showSuccess(date,people,slot,nome,tel); })
@@ -338,6 +356,7 @@ window.LP_CONFIG = (function () {
   peopleEl.addEventListener("change",renderSlots);
   nameEl.addEventListener("input",validate);
   phoneEl.addEventListener("input",validate);
+  privacyEl.addEventListener("change",validate);
   ctaEl.addEventListener("click",submit);
   var cl=$("call-link"); if(cl) cl.href="tel:"+PHONE;
 

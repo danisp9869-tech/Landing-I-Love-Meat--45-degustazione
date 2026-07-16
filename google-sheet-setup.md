@@ -28,9 +28,9 @@ Mandami quell'URL `/exec`: lo inserisco io nel file `index.html` al posto di
 prenotazione compare nel foglio, nel tab **Prenotazioni**.
 
 ## Come si comporta il form
-- Alla conferma, il sito invia: data, turno, persone, orario, nome, telefono, offerta.
-- Le prenotazioni di questa landing (cena) finiscono tutte nella scheda
-  **Prenotazioni**, in un'unica lista. La colonna **Turno** indica se la
-  prenotazione è di pranzo o di cena.
+- Le prenotazioni finiscono tutte nella scheda **Prenotazioni**, in un'unica
+  lista, con le colonne:
+  **Data · Ora · Persone · Nome · Telefono · Email · Richieste · Privacy · Creata**
+- La scheda e le intestazioni vengono create automaticamente alla prima prenotazione.
 - Se la connessione manca, invita il cliente a chiamare (nessun dato perso).
 - Finché l'URL non è inserito, il form mostra comunque la conferma a schermo.
