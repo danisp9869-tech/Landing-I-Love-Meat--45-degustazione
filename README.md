@@ -200,9 +200,19 @@ Nginx, **cancellando** sul server i file non più presenti nel repo. Restano esc
 `.git`, `.github`, `.gitattributes` e `README.md` (non fanno parte del sito).
 
 ### Preparazione del server (una volta)
-1. Crea la cartella del sito, es. `sudo mkdir -p /var/www/landing` e assegnala
-   all'utente di deploy: `sudo chown -R deploy:www-data /var/www/landing`.
-2. Configura un **virtual host** Nginx che punti a quella cartella:
+1. Crea l'**utente di deploy** (senza password: accederà solo via chiave SSH) e
+   aggiungilo al gruppo `www-data`, così potrà scrivere nella cartella servita da Nginx:
+   ```bash
+   sudo adduser --disabled-password --gecos "" deploy
+   sudo usermod -aG www-data deploy
+   ```
+2. Crea la cartella del sito, es. `sudo mkdir -p /var/www/landing` e assegnala
+   all'utente di deploy (rendendola scrivibile dal gruppo):
+   ```bash
+   sudo chown -R deploy:www-data /var/www/landing
+   sudo chmod -R 775 /var/www/landing
+   ```
+3. Configura un **virtual host** Nginx che punti a quella cartella:
    ```nginx
    server {
        listen 80;
@@ -213,7 +223,7 @@ Nginx, **cancellando** sul server i file non più presenti nel repo. Restano esc
    ```
    Poi `sudo nginx -t && sudo systemctl reload nginx` (e, consigliato, HTTPS con
    `certbot --nginx`).
-3. Crea una **coppia di chiavi SSH dedicata** al deploy (sul tuo PC):
+4. Crea una **coppia di chiavi SSH dedicata** al deploy (sul tuo PC):
    ```bash
    ssh-keygen -t ed25519 -f deploy_key -C "github-actions-deploy" -N ""
    ```
