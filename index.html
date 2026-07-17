@@ -122,6 +122,24 @@ img{max-width:100%;display:block}
 .success .det span{color:var(--muted)}
 .success .again{display:inline-block;margin-top:14px;color:var(--gold);font-size:14px;text-decoration:none}
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1752658912398511');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -292,7 +310,7 @@ window.LP_CONFIG = (function () {
         el.innerHTML=full?(slot+'<span class="tag">esaurito</span>'):slot;
         if(!full){el.addEventListener("click",function(){
           var s=document.querySelectorAll(".slot.sel"); for(var i=0;i<s.length;i++)s[i].classList.remove("sel");
-          el.classList.add("sel"); slotInput.value=slot; validate();
+          el.classList.add("sel"); slotInput.value=slot; startCheckout(); validate();
         });}
         row.appendChild(el);
       });
@@ -307,7 +325,12 @@ window.LP_CONFIG = (function () {
   }
   function fmtDate(s){var p=s.split("-");return p[2]+"/"+p[1]+"/"+p[0];}
 
+  function fbTrack(ev){ try{ if(typeof fbq==="function") fbq("track",ev); }catch(e){} }
+  var checkoutStarted=false;
+  function startCheckout(){ if(checkoutStarted) return; checkoutStarted=true; fbTrack("InitiateCheckout"); } // inizio prenotazione
+
   function showSuccess(date,people,slot,nome,tel){
+    fbTrack("Lead"); // conversione: prenotazione completata
     bookEl.innerHTML=
       '<div class="success"><div class="ok">✓</div>'+
       '<h3>Tavolo prenotato, '+nome.split(" ")[0]+'!</h3>'+
@@ -352,10 +375,10 @@ window.LP_CONFIG = (function () {
   dateEl.addEventListener("click",openDatePicker);
   dateEl.addEventListener("focus",openDatePicker);
 
-  dateEl.addEventListener("change",renderSlots);
-  peopleEl.addEventListener("change",renderSlots);
-  nameEl.addEventListener("input",validate);
-  phoneEl.addEventListener("input",validate);
+  dateEl.addEventListener("change",function(){startCheckout();renderSlots();});
+  peopleEl.addEventListener("change",function(){startCheckout();renderSlots();});
+  nameEl.addEventListener("input",function(){startCheckout();validate();});
+  phoneEl.addEventListener("input",function(){startCheckout();validate();});
   privacyEl.addEventListener("change",validate);
   ctaEl.addEventListener("click",submit);
   var cl=$("call-link"); if(cl) cl.href="tel:"+PHONE;
