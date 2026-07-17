@@ -289,6 +289,20 @@ window.LP_CONFIG = (function () {
     var p=date.split("-"); var dow=new Date(+p[0],+p[1]-1,+p[2]).getDay(); // 0=dom … 6=sab
     var saturday=(dow===6);
 
+    // Blocco giorni/orari passati
+    var now=new Date();
+    var selMid=new Date(+p[0],+p[1]-1,+p[2]); selMid.setHours(0,0,0,0);
+    var todayMid=new Date(); todayMid.setHours(0,0,0,0);
+    var pastDay=selMid.getTime()<todayMid.getTime();
+    var isToday=selMid.getTime()===todayMid.getTime();
+    function isPastSlot(slot){
+      if(pastDay) return true;
+      if(!isToday) return false;
+      var hm=slot.split(":");
+      var t=new Date(+p[0],+p[1]-1,+p[2],+hm[0],+hm[1],0,0);
+      return t.getTime()<=now.getTime();
+    }
+
     if(saturday){
       var note=document.createElement("div"); note.className="slot-note";
       note.textContent="Sabato il pranzo è chiuso: disponibile solo a cena.";
@@ -304,11 +318,13 @@ window.LP_CONFIG = (function () {
       slotsEl.appendChild(h);
       var row=document.createElement("div"); row.className="slots-row";
       g.slots.forEach(function(slot){
+        var past=isPastSlot(slot);
         var full=(bookedFor(date,slot)+people)>(CAPACITY+GAP);
+        var disabled=past||full;
         var el=document.createElement("div");
-        el.className="slot"+(full?" full":"");
-        el.innerHTML=full?(slot+'<span class="tag">esaurito</span>'):slot;
-        if(!full){el.addEventListener("click",function(){
+        el.className="slot"+(disabled?" full":"");
+        el.innerHTML=past?(slot+'<span class="tag">passato</span>'):(full?(slot+'<span class="tag">esaurito</span>'):slot);
+        if(!disabled){el.addEventListener("click",function(){
           var s=document.querySelectorAll(".slot.sel"); for(var i=0;i<s.length;i++)s[i].classList.remove("sel");
           el.classList.add("sel"); slotInput.value=slot; startCheckout(); validate();
         });}
@@ -351,6 +367,13 @@ window.LP_CONFIG = (function () {
     errEl.textContent="";
     var date=dateEl.value,people=peopleEl.value,slot=slotInput.value,nome=nameEl.value.trim(),tel=phoneEl.value.trim(),
         email=emailEl.value.trim(),richieste=richiesteEl.value.trim();
+
+    // Sicurezza: rifiuta orari nel passato
+    var dp=date.split("-"),hm=slot.split(":");
+    if(new Date(+dp[0],+dp[1]-1,+dp[2],+hm[0],+hm[1],0,0).getTime()<=Date.now()){
+      errEl.textContent="Questo orario è già passato: scegli un orario futuro.";
+      slotInput.value=""; renderSlots(); return;
+    }
 
     // Se non è ancora configurato il foglio, mostra comunque la conferma
     if(!SHEET_URL){ showSuccess(date,people,slot,nome,tel); return; }
