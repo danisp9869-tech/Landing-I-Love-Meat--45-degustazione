@@ -44,30 +44,24 @@ a{color:inherit}
 .nav .btn{padding:11px 20px;font-size:14px}
 @media (max-width:600px){.nav .btn{padding:10px 16px;font-size:13px}}
 
-/* ---- HERO ---- */
-.hero{position:relative;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:64px 0 72px}
-.hero h1{font-size:clamp(40px,8.2vw,116px)}
+/* ---- HERO (testo sopra immagine scurita + fascio di luce) ---- */
+.hero{position:relative;overflow:hidden;min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:88px 0 70px}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:brightness(.4) saturate(1.05);z-index:0}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,9,8,.55),rgba(10,9,8,.3) 42%,rgba(10,9,8,.96) 96%)}
+.hero-glow{position:absolute;z-index:1;left:50%;top:44%;transform:translate(-50%,-50%);width:min(780px,92vw);height:460px;background:radial-gradient(ellipse at center,rgba(224,86,44,.45),rgba(224,86,44,.14) 44%,transparent 70%);filter:blur(12px);pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:840px}
+.hero .badge{margin-bottom:18px;background:rgba(10,9,8,.55);backdrop-filter:blur(4px)}
+.hero h1{font-size:clamp(46px,9vw,124px);text-shadow:0 4px 34px rgba(0,0,0,.65)}
 .hero h1 .l2{color:var(--orange)}
-.hero .lead{color:var(--muted);font-size:19px;max-width:34ch;margin:22px 0 30px}
-.hero .cta-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.hero .rate{font-size:13.5px;color:var(--muted)}
-.hero .rate b{color:var(--text)}
-.hero-media{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#14100e}
-.hero-media img{width:100%;height:100%;object-fit:cover}
-.hero-media .frame-badge{position:absolute;left:16px;bottom:16px;background:rgba(10,9,8,.7);backdrop-filter:blur(4px)}
-.hero::after{content:"";position:absolute;top:-20%;right:-10%;width:520px;height:520px;background:radial-gradient(circle,rgba(224,86,44,.16),transparent 62%);pointer-events:none}
-@media (max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:26px;padding:40px 0 50px}
-  .hero-media{aspect-ratio:16/11;order:-1}
-  .hero .lead{font-size:17px}
-}
+.hero .lead{color:#eadfd4;font-size:19px;max-width:42ch;margin:24px auto 32px;text-shadow:0 2px 16px rgba(0,0,0,.8)}
+.hero .cta-row{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
+.hero .rate{font-size:13.5px;color:#cfc6bc;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.hero .rate b{color:#fff}
 @media (max-width:600px){
   .wrap{padding:0 20px}
-  .hero-text{text-align:center}
-  .hero .lead{margin-left:auto;margin-right:auto}
-  .hero .cta-row{justify-content:center;gap:16px}
-  .hero .badge{margin:0 auto}
+  .hero{min-height:88vh;padding:80px 0 56px}
+  .hero .lead{font-size:17px}
+  .hero .cta-row{gap:16px}
   .section{padding:40px 0}
   .offer{padding:38px 20px;border-radius:20px}
   .grid2{grid-template-columns:1fr}
@@ -205,19 +199,15 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
 
 <!-- HERO -->
 <header class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-text">
-      <span class="badge"><span class="dot"></span>Posti limitati stasera</span>
-      <h1 class="display" style="margin-top:16px">Per veri<br>carnivori<br><span class="l2">come te.</span></h1>
-      <p class="lead">Il punto di ritrovo a Pianezza per i veri carnivori. Tagli pregiati, brace a fuoco vivo, cotture come dio comanda.</p>
-      <div class="cta-row">
-        <a class="btn" href="#book">Prenota il tuo tavolo</a>
-        <div class="rate"><span class="stars">★★★★★</span><br><b>4.9</b> · 500+ carnivori soddisfatti</div>
-      </div>
-    </div>
-    <div class="hero-media">
-      <img src="hero.jpg" alt="Tagli di carne pregiata da I Love Meat" onerror="this.style.display='none'">
-      <span class="badge frame-badge"><span class="dot"></span>Griglia a fuoco vivo</span>
+  <img class="hero-bg" src="hero.jpg" alt="Tagli di carne pregiata da I Love Meat" onerror="this.style.display='none'">
+  <span class="hero-glow"></span>
+  <div class="wrap hero-inner">
+    <span class="badge"><span class="dot"></span>Posti limitati stasera</span>
+    <h1 class="display">Per veri<br>carnivori<br><span class="l2">come te.</span></h1>
+    <p class="lead">Il punto di ritrovo a Pianezza per i veri carnivori. Tagli pregiati, brace a fuoco vivo, cotture come dio comanda.</p>
+    <div class="cta-row">
+      <a class="btn" href="#book">Prenota il tuo tavolo</a>
+      <div class="rate"><span class="stars">★★★★★</span><br><b>4.9</b> · 500+ carnivori soddisfatti</div>
     </div>
   </div>
 </header>
