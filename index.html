@@ -66,6 +66,19 @@ a{color:inherit}
   .grid2{grid-template-columns:1fr}
 }
 
+/* Desktop: l'hero deve stare dentro la prima schermata e lasciar intravedere
+   la sezione sotto. Su mobile resta com'è. */
+@media (min-width:1000px){
+  .hero{min-height:auto;padding:26px 0 40px}
+  .hero .badge{margin-bottom:14px}
+  .hero h1{font-size:clamp(64px,8.6vw,124px)}
+  .hero .lead{font-size:18px;margin:18px auto 26px}
+}
+@media (min-width:1000px) and (max-height:820px){
+  .hero h1{font-size:clamp(56px,7.4vw,104px)}
+  .hero .lead{margin:14px auto 22px}
+}
+
 /* ---- OFFERTA ---- */
 .section{padding:36px 0}
 .offer{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;background:linear-gradient(160deg,#241813,#140f0d 70%);border:1px solid rgba(209,10,28,.3);border-radius:24px;padding:44px 34px;text-align:left;overflow:hidden}
