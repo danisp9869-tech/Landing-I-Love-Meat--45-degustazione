@@ -3,11 +3,18 @@ name: Deploy landing su VPS (release atomiche)
 # Pubblica la landing CENA sul dominio prenotadegustazione.ilovemeatgriglieria.it
 # servito da Nginx da /var/www/ilm-45/current (symlink a una release).
 # Deploy atomico: crea /var/www/ilm-45/releases/<timestamp>, ci copia i file,
-# poi sposta il symlink `current`. Parte a ogni push su main + avvio manuale.
+# poi sposta il symlink `current`.
+#
+# ⚠️ RICHIEDE che l'utente SSH ($VPS_USER) abbia permesso di scrittura su
+#    /var/www/ilm-45 (oggi è di root → "mkdir: Permission denied").
+#    Finché non è concesso, la produzione si aggiorna con `push deploy` dal Mac.
+#    Per abilitare l'automatico, sul server (da root):
+#       chown -R $VPS_USER:$VPS_USER /var/www/ilm-45
+#    poi rimetti il blocco `push:` qui sotto.
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+  # push:
+  #   branches: [main]
+  workflow_dispatch:   # solo avvio manuale finché i permessi non sono concessi
 
 concurrency:
   group: deploy-vps-ilm45
