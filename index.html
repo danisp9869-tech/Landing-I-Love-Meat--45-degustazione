@@ -11,12 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-/* I Love Meat — landing "Per veri carnivori". Nero + arancione, display Anton. */
+/* I Love Meat — landing "Per veri carnivori". Nero + rosso, display Anton. */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0a0908;--bg2:#141010;--card:#1a1512;--card2:#211a16;--line:#2c2420;
   --text:#f2ede6;--muted:#9a9088;
-  --orange:#e0562c;--orange-2:#f26a3a;--orange-d:#b8431f;
+  --red:#d10a1c;--red-2:#f01f30;--red-d:#8f0713;
   --radius:16px
 }
 html{scroll-behavior:smooth}
@@ -25,33 +25,32 @@ img{max-width:100%;display:block}
 a{color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 .display{font-family:"Anton","Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.94}
-.kicker{color:var(--orange);font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
-.orange{color:var(--orange)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:17px 32px;border:none;border-radius:999px;background:var(--orange);color:#fff;font-family:"Anton","Arial Narrow",sans-serif;font-size:22px;font-weight:400;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;text-decoration:none;transition:.15s;box-shadow:0 10px 30px rgba(224,86,44,.35)}
-.btn:hover{background:var(--orange-2);transform:translateY(-1px)}
+.kicker{color:var(--red);font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.accent{color:var(--red)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:17px 32px;border:none;border-radius:999px;background:var(--red);color:#fff;font-family:"Anton","Arial Narrow",sans-serif;font-size:22px;font-weight:400;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;text-decoration:none;transition:.15s;box-shadow:0 10px 30px rgba(209,10,28,.35)}
+.btn:hover{background:var(--red-2);transform:translateY(-1px)}
 .btn-ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--text);font-weight:700}
-.btn-ghost:hover{background:rgba(255,255,255,.04);border-color:var(--orange);transform:none}
-.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border:1px solid rgba(224,86,44,.5);border-radius:999px;color:var(--orange);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(224,86,44,.08)}
-.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 0 rgba(224,86,44,.6);animation:pulse 1.8s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,86,44,.5)}70%{box-shadow:0 0 0 7px rgba(224,86,44,0)}100%{box-shadow:0 0 0 0 rgba(224,86,44,0)}}
-.stars{color:var(--orange);letter-spacing:2px;font-size:14px}
+.btn-ghost:hover{background:rgba(255,255,255,.04);border-color:var(--red);transform:none}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border:1px solid rgba(209,10,28,.5);border-radius:999px;color:var(--red);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(209,10,28,.08)}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(209,10,28,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(209,10,28,.5)}70%{box-shadow:0 0 0 7px rgba(209,10,28,0)}100%{box-shadow:0 0 0 0 rgba(209,10,28,0)}}
+.stars{color:var(--red);letter-spacing:2px;font-size:14px}
 
 /* ---- NAV ---- */
 .nav{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(10,9,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav .logo{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.02em;line-height:1}
-.nav .logo small{display:block;color:var(--orange);font-family:"Inter",sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.22em;margin-top:3px}
+.nav .logo small{display:block;color:var(--red);font-family:"Inter",sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.22em;margin-top:3px}
 .nav .btn{padding:11px 22px;font-size:18px}
 @media (max-width:600px){.nav .btn{padding:10px 18px;font-size:16px}}
 
-/* ---- HERO (testo sopra immagine scurita + fascio di luce) ---- */
+/* ---- HERO (testo sopra immagine scurita) ---- */
 .hero{position:relative;overflow:hidden;min-height:74vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px 0 60px}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:brightness(.4) saturate(1.05);z-index:0}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%;filter:brightness(.55) saturate(1.05);z-index:0}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,9,8,.55),rgba(10,9,8,.3) 42%,rgba(10,9,8,.96) 96%)}
-.hero-glow{position:absolute;z-index:1;left:50%;top:44%;transform:translate(-50%,-50%);width:min(780px,92vw);height:460px;background:radial-gradient(ellipse at center,rgba(224,86,44,.45),rgba(224,86,44,.14) 44%,transparent 70%);filter:blur(12px);pointer-events:none}
 .hero-inner{position:relative;z-index:2;max-width:1120px}
 .hero .badge{margin-bottom:18px;background:rgba(10,9,8,.55);backdrop-filter:blur(4px)}
-.hero h1{font-size:clamp(56px,11vw,172px);text-shadow:0 4px 34px rgba(0,0,0,.65)}
-.hero h1 .l2{color:var(--orange)}
+.hero h1{font-size:clamp(64px,13vw,196px);text-shadow:0 4px 34px rgba(0,0,0,.65)}
+.hero h1 .l2{color:var(--red)}
 .hero .lead{color:#eadfd4;font-size:19px;max-width:42ch;margin:24px auto 32px;text-shadow:0 2px 16px rgba(0,0,0,.8)}
 .hero .cta-row{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
 .hero .rate{font-size:13.5px;color:#cfc6bc;text-shadow:0 1px 10px rgba(0,0,0,.8)}
@@ -64,29 +63,59 @@ a{color:inherit}
   .hero .cta-row .btn{width:100%;max-width:360px;font-size:24px;padding:19px 24px}
   .hero .rate{text-align:center;font-size:14px}
   .section{padding:30px 0}
-  .offer{padding:38px 20px;border-radius:20px}
-  .offer .btn{width:100%;max-width:360px}
   .grid2{grid-template-columns:1fr}
 }
 
 /* ---- OFFERTA ---- */
 .section{padding:36px 0}
-.offer{position:relative;background:linear-gradient(160deg,#241813,#140f0d 70%);border:1px solid rgba(224,86,44,.3);border-radius:24px;padding:52px 28px;text-align:center;overflow:hidden}
-.offer::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(224,86,44,.18),transparent 60%);pointer-events:none}
+.offer{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;background:linear-gradient(160deg,#241813,#140f0d 70%);border:1px solid rgba(209,10,28,.3);border-radius:24px;padding:44px 34px;text-align:left;overflow:hidden}
+.offer-testo{position:relative;z-index:1}
+.offer h2.offer-title{font-size:clamp(44px,7.4vw,96px);line-height:.9;margin-bottom:20px}
+.offer-title .pre,.offer-title .post{display:block;font-size:.3em;line-height:1.1;color:var(--muted)}
+.offer-title .pre{margin-bottom:6px}
+.offer-title .post{margin-top:8px}
+.offer-foto{position:relative;z-index:1;border-radius:16px;overflow:hidden;border:1px solid var(--line);min-height:380px}
+.offer-foto img{width:100%;height:100%;object-fit:cover}
+.offer::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(209,10,28,.18),transparent 60%);pointer-events:none}
 .offer .badge{margin-bottom:20px}
 .offer h2{font-size:clamp(30px,5.4vw,58px);margin-bottom:16px}
-.offer h2 .l2{color:var(--orange)}
-.offer p.desc{color:var(--muted);font-size:17px;max-width:46ch;margin:0 auto 26px}
+.offer h2 .l2{color:var(--red)}
+.offer p.desc{color:var(--muted);font-size:17px;max-width:46ch;margin:0 0 26px}
 .offer p.desc b{color:#fff}
-.offer .price{font-family:"Anton",sans-serif;color:var(--orange);font-size:clamp(60px,11vw,96px);line-height:.9}
-.offer .price small{display:inline-block;font-family:"Inter",sans-serif;color:var(--muted);font-size:15px;font-weight:600;margin-left:6px;vertical-align:middle;text-align:left}
-.offer .price small span{display:block;line-height:1.2}
+.offer .price{font-family:"Anton",sans-serif;color:var(--red);font-size:clamp(60px,11vw,96px);line-height:.9}
+.offer .price .pre{display:inline-block;font-family:"Inter",sans-serif;color:var(--muted);font-size:17px;font-weight:600;margin-right:10px;vertical-align:middle}
 .offer .btn{margin-top:26px}
 .offer .fine{margin-top:16px;color:var(--muted);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+/* mobile: la card torna a colonna singola, foto sotto il testo.
+   Va dopo le regole .offer qui sopra, altrimenti verrebbe sovrascritta. */
+@media (max-width:700px){
+  .offer{grid-template-columns:1fr;gap:24px;padding:38px 20px;border-radius:20px;text-align:center}
+  .offer p.desc{margin:0 auto 26px}
+  .offer .price{margin-top:4px}
+  .offer-foto{min-height:230px}
+  .offer .btn{width:100%;max-width:360px}
+}
 
 /* ---- ESPERIENZA / GALLERY ---- */
-.exp h2{font-size:clamp(30px,5.2vw,56px);margin:6px 0 30px}
-.exp h2 .l2{color:var(--orange)}
+.exp h2{font-size:clamp(30px,5.2vw,56px);margin:6px 0 16px}
+.exp h2 .l2{color:var(--red)}
+.exp .intro{color:var(--muted);font-size:17px;max-width:58ch;margin:0 0 28px}
+.exp .intro b{color:var(--text);font-weight:600}
+.tile figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:38px 16px 15px;font-family:"Anton","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:18px;line-height:1.1;background:linear-gradient(180deg,transparent,rgba(10,9,8,.6) 38%,rgba(10,9,8,.95))}
+.tile figcaption{text-shadow:0 2px 12px rgba(0,0,0,.85)}
+/* banco: foto principale grande a sinistra, seconda in colonna stretta */
+.banco{display:grid;grid-template-columns:1.7fr 1fr;gap:14px;height:440px}
+.cucina{margin-top:52px}
+.cucina h3{font-size:clamp(26px,4.4vw,44px);margin-bottom:12px}
+/* galleria a incastro: due blocchi speculari, grande a sinistra poi grande a destra */
+.galleria{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:172px;gap:14px}
+.galleria .tile:nth-child(1){grid-column:1 / 5;grid-row:1 / 3}
+.galleria .tile:nth-child(2){grid-column:5 / 7;grid-row:1}
+.galleria .tile:nth-child(3){grid-column:5 / 7;grid-row:2}
+.galleria .tile:nth-child(4){grid-column:1 / 3;grid-row:3}
+.galleria .tile:nth-child(5){grid-column:1 / 3;grid-row:4}
+.galleria .tile:nth-child(6){grid-column:3 / 7;grid-row:3 / 5}
+.cucina .cta-row{text-align:center;margin-top:30px}
 .gallery{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:14px;height:520px}
 .tile{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#14100e}
 .tile:nth-child(1){grid-row:1 / span 2}
@@ -94,8 +123,15 @@ a{color:inherit}
 .tile .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#5f574f;font-size:12.5px;text-align:center;padding:12px}
 .tile .ph svg{width:34px;height:34px;opacity:.5}
 @media (max-width:760px){
-  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:220px 160px;height:auto}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:260px 190px;height:auto}
   .tile:nth-child(1){grid-row:1;grid-column:1 / span 2}
+  .banco{grid-template-columns:1fr;grid-template-rows:250px 180px;height:auto}
+  .banco .tile{grid-column:1}
+  .cucina .cta-row .btn{width:100%;max-width:360px}
+  /* mobile: due larghe a tutta riga che incorniciano quattro tessere piccole */
+  .galleria{grid-template-columns:1fr 1fr;grid-auto-rows:132px}
+  .galleria .tile:nth-child(n){grid-column:auto;grid-row:auto}
+  .galleria .tile:nth-child(1),.galleria .tile:nth-child(6){grid-column:1 / 3;grid-row:span 2}
 }
 
 /* ---- RECENSIONE / STATS ---- */
@@ -103,7 +139,7 @@ a{color:inherit}
 .review .quote{font-size:20px;line-height:1.5;color:var(--text);margin:12px 0}
 .review .who{color:var(--muted);font-size:14px}
 .review .stats{display:flex;gap:28px;justify-content:flex-end}
-.review .stat b{font-family:"Anton",sans-serif;color:var(--orange);font-size:40px;line-height:1;display:block}
+.review .stat b{font-family:"Anton",sans-serif;color:var(--red);font-size:40px;line-height:1;display:block}
 .review .stat span{color:var(--muted);font-size:13px}
 @media (max-width:700px){.review{grid-template-columns:1fr;gap:22px}.review .stats{justify-content:flex-start}}
 
@@ -115,7 +151,7 @@ a{color:inherit}
 .hours .row:last-child{border-bottom:none}
 .hours .row span:first-child{color:var(--muted)}
 .hours .row.addr{background:var(--card);font-weight:600}
-.hours .row.addr a{color:var(--orange);text-decoration:none}
+.hours .row.addr a{color:var(--red);text-decoration:none}
 .map{border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:300px;background:#14100e}
 .map iframe{width:100%;height:100%;min-height:300px;border:0;display:block;filter:grayscale(.3) contrast(1.05)}
 @media (max-width:760px){.find-grid{grid-template-columns:1fr}}
@@ -124,6 +160,7 @@ a{color:inherit}
 .book-sec{background:linear-gradient(180deg,#100c0a,#0a0908)}
 .book-head{text-align:center;margin-bottom:26px}
 .book-head h2{font-size:clamp(30px,5.4vw,58px);margin-top:6px}
+.book-head .badge{margin-top:14px}
 .book{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:600px){.grid2{grid-template-columns:1fr}}
@@ -133,42 +170,48 @@ a{color:inherit}
 .field input,.field select{width:100%;max-width:100%;min-width:0;padding:14px 13px;background:var(--bg2);border:1px solid var(--line);border-radius:11px;color:var(--text);font-size:16px;font-family:inherit}
 .field input[type="date"]{-webkit-appearance:none;appearance:none;display:block}
 .field input[type="date"]::-webkit-date-and-time-value{text-align:left}
-.field input:focus,.field select:focus{outline:none;border-color:var(--orange)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--red)}
 .slots{display:block}
 .slots-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
-.slot-group-label{color:var(--orange);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px}
+.slot-group-label{color:var(--red);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px}
 .slot-group-label:first-child{margin-top:0}
-.slot-note{color:var(--orange-2);font-size:12.5px;margin-bottom:12px;padding:8px 12px;background:rgba(224,86,44,.1);border:1px solid rgba(224,86,44,.35);border-radius:10px}
+.slot-note{color:var(--red-2);font-size:12.5px;margin-bottom:12px;padding:8px 12px;background:rgba(209,10,28,.1);border:1px solid rgba(209,10,28,.35);border-radius:10px}
 .slot{flex:1 1 28%;min-width:74px;text-align:center;padding:11px 6px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;transition:.12s}
-.slot:hover{border-color:var(--orange)}
-.slot.sel{background:var(--orange);border-color:var(--orange);color:#fff}
+.slot:hover{border-color:var(--red)}
+.slot.sel{background:var(--red);border-color:var(--red);color:#fff}
 .slot.full{opacity:.4;cursor:not-allowed;text-decoration:line-through;color:var(--muted)}
 .slot .tag{display:block;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 .privacy{display:flex;align-items:flex-start;gap:10px;margin:2px 0 16px;color:var(--muted);font-size:13px;line-height:1.45;cursor:pointer}
-.privacy input{flex:0 0 auto;width:18px;height:18px;margin-top:1px;accent-color:var(--orange);cursor:pointer}
-.privacy a{color:var(--orange);text-decoration:underline}
-.cta{display:block;width:100%;text-align:center;padding:17px;border:none;border-radius:12px;background:var(--orange);color:#fff;font-size:24px;font-weight:400;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;font-family:"Anton","Arial Narrow",sans-serif;box-shadow:0 8px 22px rgba(224,86,44,.35)}
-.cta:hover{background:var(--orange-2)}
+.privacy input{flex:0 0 auto;width:18px;height:18px;margin-top:1px;accent-color:var(--red);cursor:pointer}
+.privacy a{color:var(--red);text-decoration:underline}
+.cta{display:block;width:100%;text-align:center;padding:17px;border:none;border-radius:12px;background:var(--red);color:#fff;font-size:24px;font-weight:400;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;font-family:"Anton","Arial Narrow",sans-serif;box-shadow:0 8px 22px rgba(209,10,28,.35)}
+.cta:hover{background:var(--red-2)}
 .cta:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
 .err{color:#ff8a6a;font-size:13px;margin-top:8px;min-height:16px}
 .quick{display:flex;gap:10px;margin:14px 0 2px}
 .quick a{flex:1;text-align:center;padding:13px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;border:1px solid var(--line);color:var(--text)}
-.quick a:hover{border-color:var(--orange)}
+.quick a:hover{border-color:var(--red)}
 
 /* ---- SUCCESS ---- */
 .success{text-align:center;padding:8px 4px}
-.success .ok{font-size:44px;line-height:1;color:var(--orange)}
+.success .ok{font-size:44px;line-height:1;color:var(--red)}
 .success h3{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:26px;margin:12px 0 6px}
 .success p{color:var(--muted);font-size:15px}
 .success .det{margin-top:16px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:left;font-size:15px;line-height:1.9}
 .success .det span{color:var(--muted)}
-.success .again{display:inline-block;margin-top:14px;color:var(--orange);font-size:14px;text-decoration:none}
+.success .again{display:inline-block;margin-top:14px;color:var(--red);font-size:14px;text-decoration:none}
 
 /* ---- FOOTER ---- */
-.foot{border-top:1px solid var(--line);padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:13.5px}
+/* i 24px laterali vanno ripetuti: .foot viene dopo .wrap e con lo shorthand
+   "padding" ne azzererebbe i lati, incollando le scritte ai bordi */
+.foot{border-top:1px solid var(--line);padding:26px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:13.5px}
+.foot > *{min-width:0}
 .foot .logo{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:18px;color:var(--text);letter-spacing:.02em}
 .foot a{color:var(--muted);text-decoration:none}
-.foot a:hover{color:var(--orange)}
+.foot a:hover{color:var(--red)}
+@media (max-width:600px){
+  .foot{flex-direction:column;align-items:flex-start;gap:10px;padding:24px 20px}
+}
 
 </style>
 
@@ -200,12 +243,11 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
 
 <!-- HERO -->
 <header class="hero">
-  <img class="hero-bg" src="hero.jpg" alt="Tagli di carne pregiata da I Love Meat" onerror="this.style.display='none'">
-  <span class="hero-glow"></span>
+  <img class="hero-bg" src="hero.jpg" alt="Costata di manzo marezzata da I Love Meat" onerror="this.style.display='none'">
   <div class="wrap hero-inner">
-    <span class="badge"><span class="dot"></span>Posti limitati stasera</span>
+    <span class="badge"><span class="dot"></span>Per intenditori</span>
     <h1 class="display">Per veri<br>carnivori<br><span class="l2">come te.</span></h1>
-    <p class="lead">Il punto di ritrovo a Pianezza per i veri carnivori. Tagli pregiati, brace a fuoco vivo, cotture come dio comanda.</p>
+    <p class="lead">Il punto di ritrovo a Pianezza per i veri carnivori. Tagli pregiati da tutto il mondo, brace a fuoco vivo, cotture come dio comanda.</p>
     <div class="cta-row">
       <a class="btn" href="#book">Prenota il tuo tavolo</a>
       <div class="rate"><span class="stars">★★★★★</span><br><b>4.9</b> · 500+ carnivori soddisfatti</div>
@@ -217,12 +259,21 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
 <section class="section">
   <div class="wrap">
     <div class="offer">
-      <span class="badge"><span class="dot"></span>Solo per pochi tavoli</span>
-      <h2 class="display">Il Menù Degustazione<br><span class="l2">che devi provare</span></h2>
-      <p class="desc">Dall'antipasto al dolce: un'esperienza di carne sensoriale completa, con <b>acqua, caffè e un calice di vino inclusi</b>.</p>
-      <div class="price">45€<small><span>a persona</span><span>min. 2 persone</span></small></div>
-      <a class="btn" href="#book">Blocca offerta</a>
-      <div class="fine">Posti limitati — offerta valida fino ad esaurimento</div>
+      <div class="offer-testo">
+        <span class="badge"><span class="dot"></span>Pochi tavoli rimasti</span>
+        <h2 class="display offer-title">
+          <span class="pre">Quando arriva in tavola</span>
+          Tagliere <span class="l2">Maxi</span>
+          <span class="post">si fa silenzio.</span>
+        </h2>
+        <p class="desc">Componi il tuo tagliere come preferisci al nostro banco carne: <b>8 pezzi a scelta</b> dalla nostra selezione premium.</p>
+        <div class="price"><span class="pre">A soli</span>45€</div>
+        <a class="btn" href="#book">Blocca offerta</a>
+        <div class="fine">Posti limitati — di solito sold out — prenota ora</div>
+      </div>
+      <figure class="offer-foto">
+        <img src="banco-tagli.jpg" alt="Il banco di I Love Meat con costate, tomahawk, arrosti e spiedini" loading="lazy">
+      </figure>
     </div>
   </div>
 </section>
@@ -233,6 +284,7 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
     <div class="book-head">
       <span class="kicker">Prenota</span>
       <h2 class="display">Il tuo tavolo ti aspetta</h2>
+      <span class="badge"><span class="dot"></span>Pochi tavoli rimasti</span>
     </div>
 
     <div class="book" id="book" aria-label="Prenota il tavolo">
@@ -278,6 +330,39 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
   </div>
 </section>
 
+
+<!-- ESPERIENZA -->
+<section class="section exp">
+  <div class="wrap">
+    <span class="kicker">L'esperienza</span>
+    <h2 class="display">Non è una cena.<br><span class="l2">È un rito.</span></h2>
+    <p class="intro">Da noi la carne si sceglie <b>al banco</b>: ci passi davanti e indichi il taglio che vuoi. Da lì va dritto sulla <b>brace a fuoco vivo</b> e arriva al tavolo quando è pronto, non un minuto prima.</p>
+
+    <div class="banco">
+      <figure class="tile">
+        <img src="banco-tagli.jpg" alt="Il banco di I Love Meat con costate, tomahawk, arrosti e spiedini" loading="lazy">
+        <figcaption>Scegli al banco</figcaption>
+      </figure>
+      <figure class="tile">
+        <img src="esperienza-banco.jpg" alt="Vassoi di spiedini, involtini e salsiccia al banco di I Love Meat" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="cucina">
+      <h3 class="display">La nostra Cucina</h3>
+      <p class="intro">Un viaggio di sapori che ti accompagna per tutta la sera.</p>
+      <div class="galleria">
+        <div class="tile"><img src="cucina-tartare-fichi.jpg" alt="Tartare di manzo con fichi e stracciatella" loading="lazy"></div>
+        <div class="tile"><img src="cucina-tartare-zucchine.jpg" alt="Tartare di manzo con zucchine e salsa" loading="lazy"></div>
+        <div class="tile"><img src="cucina-vitello-tonnato.jpg" alt="Vitello tonnato" loading="lazy"></div>
+        <div class="tile"><img src="cucina-carne-verdure.jpg" alt="Piatto di carne con peperoni, cavolfiore e rucola" loading="lazy"></div>
+        <div class="tile"><img src="cucina-agnolotti.jpg" alt="Agnolotti al sugo d'arrosto" loading="lazy"></div>
+        <div class="tile"><img src="cucina-orecchiette.jpg" alt="Orecchiette al pomodoro con briciole croccanti" loading="lazy"></div>
+      </div>
+      <div class="cta-row"><a class="btn" href="#book">Prenota un tavolo</a></div>
+    </div>
+  </div>
+</section>
 
 <!-- RECENSIONE -->
 <section class="section">
@@ -353,39 +438,68 @@ window.LP_CONFIG = (function () {
   var LUNCH = C.lunch || ["12:00","12:30","13:00","13:30","14:00"];
   var DINNER = C.dinner || ["19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30"];
   var BOOKED = C.booked || {};
+  var ALL_SLOTS = LUNCH.concat(DINNER);
   var $ = function (id) { return document.getElementById(id); };
   var dateEl=$("data"),peopleEl=$("persone"),slotsEl=$("slots"),slotInput=$("orario"),
       nameEl=$("nome"),phoneEl=$("telefono"),emailEl=$("email"),richiesteEl=$("richieste"),
       privacyEl=$("privacy"),ctaEl=$("cta"),errEl=$("err"),bookEl=$("book");
 
   var today=new Date(); today.setHours(0,0,0,0);
-  var iso=function(d){return d.toISOString().slice(0,10);};
+  // Data locale in formato YYYY-MM-DD: toISOString() userebbe UTC e in Italia
+  // (UTC+1/+2) tornerebbe il giorno prima, precompilando una data già passata.
+  var iso=function(d){var m=d.getMonth()+1,g=d.getDate();return d.getFullYear()+"-"+(m<10?"0":"")+m+"-"+(g<10?"0":"")+g;};
   dateEl.min=iso(today); if(!dateEl.value) dateEl.value=iso(today);
 
   for(var n=1;n<=20;n++){var o=document.createElement("option");o.value=n;o.textContent=n+(n===1?" persona":" persone");peopleEl.appendChild(o);}
   peopleEl.value="2";
 
+  // All'apertura porta la data sul primo giorno prenotabile (se oggi è finito, domani)
+  dateEl.value=firstBookableDate(dateEl.value,parseInt(peopleEl.value,10));
+
   function bookedFor(date,slot){return (BOOKED[date]&&BOOKED[date][slot])?BOOKED[date][slot]:0;}
+
+  // Perché un orario non è prenotabile: "" = libero, altrimenti il motivo mostrato sul tasto
+  function slotState(date,slot,people){
+    var p=date.split("-"); var dow=new Date(+p[0],+p[1]-1,+p[2]).getDay(); // 0=dom … 6=sab
+    if(dow===6&&LUNCH.indexOf(slot)>=0) return "chiuso";                   // sabato pranzo chiuso
+    var now=new Date();
+    if(date===iso(now)){                                                   // orario già trascorso
+      var hm=slot.split(":");
+      if((+hm[0]*60 + +hm[1])<=(now.getHours()*60+now.getMinutes())) return "passato";
+    }
+    if((bookedFor(date,slot)+people)>(CAPACITY+GAP)) return "esaurito";
+    return "";
+  }
+
+  function hasFreeSlot(date,people){
+    for(var i=0;i<ALL_SLOTS.length;i++){ if(!slotState(date,ALL_SLOTS[i],people)) return true; }
+    return false;
+  }
+
+  // Primo giorno con almeno un orario libero: a fine serata evita di aprire il
+  // form su un oggi tutto esaurito, proponendo direttamente il giorno dopo.
+  function firstBookableDate(date,people){
+    var p=date.split("-"), d=new Date(+p[0],+p[1]-1,+p[2]);
+    for(var i=0;i<14;i++){
+      var s=iso(d);
+      if(hasFreeSlot(s,people)) return s;
+      d.setDate(d.getDate()+1);
+    }
+    return date;
+  }
 
   function renderSlots(){
     var date=dateEl.value, people=parseInt(peopleEl.value,10)||0;
     slotInput.value=""; slotsEl.innerHTML="";
     if(!date||!people) return;
 
-    var p=date.split("-"); var dow=new Date(+p[0],+p[1]-1,+p[2]).getDay(); // 0=dom … 6=sab
-    var saturday=(dow===6);
-
     var row=document.createElement("div"); row.className="slots-row";
-    LUNCH.concat(DINNER).forEach(function(slot){
-      var isLunch=LUNCH.indexOf(slot)>=0;
-      var closed=saturday&&isLunch;                       // sabato pranzo chiuso
-      var full=(bookedFor(date,slot)+people)>(CAPACITY+GAP);
-      var disabled=closed||full;
+    ALL_SLOTS.forEach(function(slot){
+      var state=slotState(date,slot,people);
       var el=document.createElement("div");
-      el.className="slot"+(disabled?" full":"");
-      el.innerHTML=closed?(slot+'<span class="tag">chiuso</span>')
-                 :(full?(slot+'<span class="tag">esaurito</span>'):slot);
-      if(!disabled){el.addEventListener("click",function(){
+      el.className="slot"+(state?" full":"");
+      el.innerHTML=state?(slot+'<span class="tag">'+state+'</span>'):slot;
+      if(!state){el.addEventListener("click",function(){
         var s=document.querySelectorAll(".slot.sel"); for(var i=0;i<s.length;i++)s[i].classList.remove("sel");
         el.classList.add("sel"); slotInput.value=slot; startCheckout(); validate();
       });}
