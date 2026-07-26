@@ -1,18 +1,20 @@
-name: Deploy landing su VPS (Nginx via SSH)
+name: Deploy landing su VPS (release atomiche)
 
-# Pubblica il sito su un server proprio (VPS con Nginx) via SSH+rsync,
-# ad ogni push su main. Avviabile anche a mano da Actions → Run workflow.
-# NOTA: questo workflow scrive in VPS_TARGET_DIR (secret). Assicurati che sia
-# la cartella servita da Nginx per il sito.
+# Pubblica la landing CENA sul dominio prenotadegustazione.ilovemeatgriglieria.it
+# servito da Nginx da /var/www/ilm-45/current (symlink a una release).
+# Deploy atomico: crea /var/www/ilm-45/releases/<timestamp>, ci copia i file,
+# poi sposta il symlink `current`. Parte a ogni push su main + avvio manuale.
 on:
   push:
     branches: [main]
-  workflow_dispatch:   # avvio manuale dalla tab "Actions"
+  workflow_dispatch:
 
-# Evita deploy sovrapposti sullo stesso server
 concurrency:
-  group: deploy-vps
+  group: deploy-vps-ilm45
   cancel-in-progress: true
+
+env:
+  SITE_BASE: /var/www/ilm-45
 
 jobs:
   deploy:
@@ -21,32 +23,44 @@ jobs:
       - name: Checkout del repository
         uses: actions/checkout@v4
 
-      - name: Prepara la chiave SSH e il known_hosts
+      - name: Prepara la chiave SSH e known_hosts
         env:
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_PORT: ${{ secrets.VPS_PORT }}
         run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          # Se non è impostata la porta, usa la 22 di default
-          ssh-keyscan -p "${VPS_PORT:-22}" -H "$VPS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -p "${VPS_PORT:-22}" -H "$VPS_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
 
-      - name: Sincronizza i file sul server (rsync)
+      - name: Deploy atomico (nuova release + symlink current)
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
           VPS_PORT: ${{ secrets.VPS_PORT }}
-          VPS_TARGET_DIR: ${{ secrets.VPS_TARGET_DIR }}
         run: |
-          # --delete: rimuove sul server i file non più presenti nel repo
-          # gli --exclude tengono fuori tutto ciò che non fa parte del sito
-          rsync -avz --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p ${VPS_PORT:-22}" \
+          set -e
+          TS=$(date +%Y%m%d-%H%M%S)
+          REL="$SITE_BASE/releases/$TS"
+          SSH="ssh -i ~/.ssh/deploy_key -p ${VPS_PORT:-22} -o StrictHostKeyChecking=no"
+
+          echo "Creo la release $REL"
+          $SSH "$VPS_USER@$VPS_HOST" "mkdir -p '$REL'"
+
+          echo "Copio i file del sito nella release"
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${VPS_PORT:-22} -o StrictHostKeyChecking=no" \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='.gitattributes' \
             --exclude='README.md' \
-            ./ "$VPS_USER@$VPS_HOST:$VPS_TARGET_DIR/"
+            --exclude='apps-script.gs' \
+            --exclude='google-sheet-setup.md' \
+            ./ "$VPS_USER@$VPS_HOST:$REL/"
+
+          echo "Sposto il symlink current sulla nuova release (atomico)"
+          $SSH "$VPS_USER@$VPS_HOST" "ln -sfn '$REL' '$SITE_BASE/current'"
+
+          echo "Fatto. current -> $REL"
+          $SSH "$VPS_USER@$VPS_HOST" "ls -la '$SITE_BASE/current'"
