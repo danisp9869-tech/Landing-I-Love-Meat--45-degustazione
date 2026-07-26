@@ -60,7 +60,9 @@ a{color:inherit}
 .hero .rate b{color:#fff}
 @media (max-width:600px){
   .wrap{padding:0 20px}
-  .hero{min-height:auto;padding:92px 0 44px}
+  /* su mobile la barra resta scura e nel flusso, come prima */
+  .nav{position:sticky;background:rgba(10,9,8,.82);backdrop-filter:blur(10px);border-bottom-color:var(--line)}
+  .hero{min-height:auto;padding:34px 0 44px}
   /* su schermo stretto "cover" ritaglia troppo: accorcio la foto così inquadra
      più larga, la sfumo in basso per non lasciare uno stacco netto e la scurisco
      per tenere leggibili le scritte */
