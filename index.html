@@ -464,12 +464,20 @@ window.LP_CONFIG = (function () {
   ctaEl.addEventListener("click",submit);
   var cl=$("call-link"); if(cl) cl.href="tel:"+PHONE;
 
-  // Nasconde il bottone fisso in basso quando il form è visibile (niente doppio bottone)
+  // Nasconde la barra fissa quando è già visibile un altro bottone "Prenota"
+  // (sull'hero in alto oppure sul form) → mai due bottoni insieme
   var stickyEl=document.querySelector(".sticky-cta");
+  var heroEl=document.querySelector(".hero");
   if(stickyEl && "IntersectionObserver" in window){
+    function refreshSticky(){
+      var hide=(heroEl&&heroEl._vis)||(bookEl&&bookEl._vis);
+      stickyEl.classList.toggle("hidden",!!hide);
+    }
     var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ stickyEl.classList.toggle("hidden",en.isIntersecting); });
-    },{threshold:0.2});
+      entries.forEach(function(en){ en.target._vis=en.isIntersecting; });
+      refreshSticky();
+    },{threshold:0.15});
+    if(heroEl) io.observe(heroEl);
     io.observe(bookEl);
   }
 
