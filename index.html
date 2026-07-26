@@ -37,14 +37,17 @@ a{color:inherit}
 .stars{color:var(--red);letter-spacing:2px;font-size:14px}
 
 /* ---- NAV ---- */
-.nav{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(10,9,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+/* fissa e trasparente: la foto dell'hero passa sotto e arriva fino in cima.
+   La barra scura ricompare solo quando si scorre, per non perdere leggibilità. */
+.nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:transparent;border-bottom:1px solid transparent;transition:background .25s,border-color .25s}
+.nav.scrolled{background:rgba(10,9,8,.82);backdrop-filter:blur(10px);border-bottom-color:var(--line)}
 .nav .logo{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.02em;line-height:1}
 .nav .logo small{display:block;color:var(--red);font-family:"Inter",sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.22em;margin-top:3px}
 .nav .btn{padding:11px 22px;font-size:18px}
 @media (max-width:600px){.nav .btn{padding:10px 18px;font-size:16px}}
 
 /* ---- HERO (testo sopra immagine scurita) ---- */
-.hero{position:relative;overflow:hidden;min-height:74vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px 0 60px}
+.hero{position:relative;overflow:hidden;min-height:74vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:98px 0 60px}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%;filter:brightness(.55) saturate(1.05);z-index:0}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,9,8,.55),rgba(10,9,8,.3) 42%,rgba(10,9,8,.96) 96%)}
 .hero-inner{position:relative;z-index:2;max-width:1120px}
@@ -57,7 +60,13 @@ a{color:inherit}
 .hero .rate b{color:#fff}
 @media (max-width:600px){
   .wrap{padding:0 20px}
-  .hero{min-height:auto;padding:34px 0 44px}
+  .hero{min-height:auto;padding:92px 0 44px}
+  /* su schermo stretto "cover" ritaglia troppo: accorcio la foto così inquadra
+     più larga, la sfumo in basso per non lasciare uno stacco netto e la scurisco
+     per tenere leggibili le scritte */
+  .hero-bg{height:78%;filter:brightness(.48) saturate(1.05);object-position:center 42%;
+    -webkit-mask-image:linear-gradient(180deg,#000 68%,transparent 100%);
+    mask-image:linear-gradient(180deg,#000 68%,transparent 100%)}
   .hero .lead{font-size:17px}
   .hero .cta-row{flex-direction:column;gap:18px}
   .hero .cta-row .btn{width:100%;max-width:360px;font-size:24px;padding:19px 24px}
@@ -69,7 +78,7 @@ a{color:inherit}
 /* Desktop: l'hero deve stare dentro la prima schermata e lasciar intravedere
    la sezione sotto. Su mobile resta com'è. */
 @media (min-width:1000px){
-  .hero{min-height:auto;padding:26px 0 40px}
+  .hero{min-height:auto;padding:92px 0 40px}
   .hero .badge{margin-bottom:14px}
   .hero h1{font-size:clamp(64px,8.6vw,124px)}
   .hero .lead{font-size:18px;margin:18px auto 26px}
@@ -423,6 +432,14 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
 </footer>
 
 <script>
+/* Barra in alto: trasparente sull'hero, scura appena si scorre */
+(function () {
+  var nav = document.querySelector(".nav");
+  function aggiorna(){ nav.classList.toggle("scrolled", window.scrollY > 40); }
+  aggiorna();
+  window.addEventListener("scroll", aggiorna, {passive:true});
+})();
+
 /* ====== CONFIG: cambia SOLO questo blocco ====== */
 window.LP_CONFIG = (function () {
   var booked = {}; // nessuna prenotazione simulata: tutti gli orari disponibili
