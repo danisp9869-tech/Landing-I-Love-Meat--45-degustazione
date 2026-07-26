@@ -4,123 +4,166 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>I Love Meat · Pianezza — Menu Degustazione di Carne 45€</title>
-<meta name="description" content="La Degustazione di Carne: dall'antipasto al dolce, calice di vino, acqua e caffè inclusi. 45€ a persona. Alla griglia pensiamo noi. Offerta valida fino al 30 luglio. Prenota il tavolo.">
+<meta name="description" content="Per veri carnivori: Menu Degustazione dall'antipasto al dolce, calice di vino, acqua e caffè inclusi. 45€ a persona. Prenota il tuo tavolo da I Love Meat, Pianezza (TO).">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-/* I Love Meat — landing offerta unica. Oro premium su nero, CTA rossa. Mobile-first. */
+/* I Love Meat — landing "Per veri carnivori". Nero + arancione, display Anton. */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0b0a09;--bg2:#141210;--card:#1b1815;--line:#2a2622;
-  --text:#f5f1ea;--muted:#b3a99c;
-  --gold:#e9c46a;--gold-2:#f4d98a;--gold-d:#c9a84c;
-  --red:#d1281f;--red-d:#a91b14;
-  --radius:14px
+  --bg:#0a0908;--bg2:#141010;--card:#1a1512;--card2:#211a16;--line:#2c2420;
+  --text:#f2ede6;--muted:#9a9088;
+  --orange:#e0562c;--orange-2:#f26a3a;--orange-d:#b8431f;
+  --radius:16px
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:88px}
+body{background:var(--bg);color:var(--text);font-family:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
-.wrap{max-width:560px;margin:0 auto;padding:0 18px}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.display{font-family:"Anton","Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.94}
+.kicker{color:var(--orange);font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.orange{color:var(--orange)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 26px;border:none;border-radius:999px;background:var(--orange);color:#fff;font-family:"Inter",sans-serif;font-size:16px;font-weight:800;cursor:pointer;text-decoration:none;transition:.15s;box-shadow:0 10px 30px rgba(224,86,44,.35)}
+.btn:hover{background:var(--orange-2);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--text);font-weight:700}
+.btn-ghost:hover{background:rgba(255,255,255,.04);border-color:var(--orange);transform:none}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border:1px solid rgba(224,86,44,.5);border-radius:999px;color:var(--orange);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(224,86,44,.08)}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 0 rgba(224,86,44,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,86,44,.5)}70%{box-shadow:0 0 0 7px rgba(224,86,44,0)}100%{box-shadow:0 0 0 0 rgba(224,86,44,0)}}
+.stars{color:var(--orange);letter-spacing:2px;font-size:14px}
 
-/* ---- BRAND BAR ---- */
-.brandbar{position:sticky;top:0;z-index:70;display:flex;align-items:center;justify-content:center;gap:0;padding:30px 16px 15px;background:rgba(11,10,9,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.brandbar .mark{font-size:23px;font-weight:900;letter-spacing:.01em;line-height:1;
-  background:linear-gradient(180deg,var(--gold-2),var(--gold) 55%,var(--gold-d));-webkit-background-clip:text;background-clip:text;color:transparent}
-.brandbar .heart{-webkit-text-fill-color:var(--red);color:var(--red);font-size:19px;margin:0 3px;vertical-align:middle}
-.brandbar .tag{margin-left:12px;padding-left:12px;border-left:1px solid var(--line);color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-@media (max-width:420px){.brandbar .tag{display:none}}
+/* ---- NAV ---- */
+.nav{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(10,9,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .logo{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.02em;line-height:1}
+.nav .logo small{display:block;color:var(--orange);font-family:"Inter",sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.22em;margin-top:3px}
+.nav .btn{padding:11px 20px;font-size:14px}
+@media (max-width:600px){.nav .btn{padding:10px 16px;font-size:13px}}
 
 /* ---- HERO ---- */
-.hero{position:relative;text-align:center;padding-top:20px;background:var(--bg)}
-.hero-media{position:relative;background:#241f1b;overflow:hidden;min-height:120px}
-.hero-img{width:100%;height:180px;object-fit:cover;object-position:center 62%;filter:brightness(.5)}
-@media (min-width:520px){.hero-img{height:220px}}
-.hero-overlay{position:relative;padding:26px 18px 24px;margin-top:-56px;background:linear-gradient(to top,#0b0a09 62%,rgba(11,10,9,.55) 86%,rgba(11,10,9,0) 100%)}
-.hero-badge{display:inline-block;margin-bottom:14px;padding:6px 14px;border:1px solid rgba(233,196,106,.55);border-radius:999px;color:var(--gold);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.45)}
-.hero h1{font-size:36px;line-height:1.06;font-weight:900;letter-spacing:-.01em;
-  background:linear-gradient(180deg,var(--gold-2),var(--gold) 55%,var(--gold-d));-webkit-background-clip:text;background-clip:text;color:transparent;
-  text-shadow:0 2px 26px rgba(0,0,0,.85)}
-.hero h1 .thin{display:block;font-size:19px;font-weight:600;letter-spacing:.01em;margin-top:8px;-webkit-text-fill-color:var(--text);color:var(--text);text-shadow:0 1px 14px rgba(0,0,0,.9)}
-@media (max-width:480px){.hero h1{font-size:31px}.hero h1 .thin{font-size:17px}}
+.hero{position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:64px 0 72px}
+.hero h1{font-size:clamp(52px,9vw,116px)}
+.hero h1 .l2{color:var(--orange)}
+.hero .lead{color:var(--muted);font-size:19px;max-width:34ch;margin:22px 0 30px}
+.hero .cta-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.hero .rate{font-size:13.5px;color:var(--muted)}
+.hero .rate b{color:var(--text)}
+.hero-media{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#14100e}
+.hero-media img{width:100%;height:100%;object-fit:cover}
+.hero-media .frame-badge{position:absolute;left:16px;bottom:16px;background:rgba(10,9,8,.7);backdrop-filter:blur(4px)}
+.hero::after{content:"";position:absolute;top:-20%;right:-10%;width:520px;height:520px;background:radial-gradient(circle,rgba(224,86,44,.16),transparent 62%);pointer-events:none}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:26px;padding:40px 0 50px}
+  .hero-media{aspect-ratio:16/11;order:-1}
+  .hero .lead{font-size:17px}
+}
 
-.hero-offer{padding-top:24px}
-.hero-address{display:inline-flex;align-items:center;gap:7px;margin-bottom:16px;padding:9px 16px;border:1px solid rgba(233,196,106,.45);border-radius:999px;color:var(--gold);font-size:14px;font-weight:700;text-decoration:none}
-.hero-address:hover{background:rgba(233,196,106,.08)}
-.sub{color:var(--muted);font-size:16px;max-width:46ch;margin:0 auto}
-.sub b{color:var(--text)}
+/* ---- OFFERTA ---- */
+.section{padding:56px 0}
+.offer{position:relative;background:linear-gradient(160deg,#241813,#140f0d 70%);border:1px solid rgba(224,86,44,.3);border-radius:24px;padding:52px 28px;text-align:center;overflow:hidden}
+.offer::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(224,86,44,.18),transparent 60%);pointer-events:none}
+.offer .badge{margin-bottom:20px}
+.offer h2{font-size:clamp(30px,5.4vw,58px);margin-bottom:16px}
+.offer h2 .l2{color:var(--orange)}
+.offer p.desc{color:var(--muted);font-size:17px;max-width:46ch;margin:0 auto 26px}
+.offer .price{font-family:"Anton",sans-serif;color:var(--orange);font-size:clamp(60px,11vw,96px);line-height:.9}
+.offer .price small{display:inline-block;font-family:"Inter",sans-serif;color:var(--muted);font-size:15px;font-weight:600;margin-left:6px;vertical-align:middle;text-align:left}
+.offer .price small span{display:block;line-height:1.2}
+.offer .btn{margin-top:26px}
+.offer .fine{margin-top:16px;color:var(--muted);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
 
-/* ---- BLOCCO PREZZO + SCARSITY ---- */
-.price-card{margin:22px auto 0;max-width:440px;background:linear-gradient(180deg,#1e1a16,#141210);border:1px solid rgba(233,196,106,.35);border-radius:16px;padding:20px 18px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.price-card .lbl{color:var(--gold);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
-.price-card .big{font-size:52px;font-weight:900;color:#fff;line-height:1;margin:6px 0 2px}
-.price-card .big span{font-size:22px;color:var(--muted);font-weight:700}
-.price-card .note{color:var(--muted);font-size:13.5px}
-.scarcity{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:9px 16px;border-radius:999px;background:rgba(209,40,31,.14);border:1px solid rgba(209,40,31,.55);color:#ff9d90;font-size:13.5px;font-weight:700}
-.scarcity .dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(209,40,31,.6);animation:pulse 1.8s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(209,40,31,.55)}70%{box-shadow:0 0 0 8px rgba(209,40,31,0)}100%{box-shadow:0 0 0 0 rgba(209,40,31,0)}}
+/* ---- ESPERIENZA / GALLERY ---- */
+.exp h2{font-size:clamp(30px,5.2vw,56px);margin:6px 0 30px}
+.exp h2 .l2{color:var(--orange)}
+.gallery{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:14px;height:520px}
+.tile{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#14100e}
+.tile:nth-child(1){grid-row:1 / span 2}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#5f574f;font-size:12.5px;text-align:center;padding:12px}
+.tile .ph svg{width:34px;height:34px;opacity:.5}
+@media (max-width:760px){
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:220px 160px;height:auto}
+  .tile:nth-child(1){grid-row:1;grid-column:1 / span 2}
+}
 
-/* ---- COSA INCLUDE ---- */
-.includes{margin:26px 0 6px}
-.includes h2{text-align:center;font-size:21px;margin-bottom:4px}
-.includes .msub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:16px}
-.includes .story{color:var(--text);font-size:16px;line-height:1.65;max-width:48ch;margin:0 auto 14px}
-.includes .story:last-of-type{margin-bottom:0}
-.includes .story b{color:var(--gold)}
-.course{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
-.course:last-of-type{border-bottom:none}
-.course .n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1px solid rgba(233,196,106,.5);color:var(--gold);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
-.course .txt .name{font-weight:800;font-size:16px}
-.course .txt .desc{color:var(--muted);font-size:13.5px;margin-top:2px}
-.included-line{margin-top:16px;background:var(--bg2);border:1px solid rgba(233,196,106,.35);border-radius:12px;padding:13px 16px;font-size:14px;line-height:1.55}
-.included-line b{color:var(--gold)}
+/* ---- RECENSIONE / STATS ---- */
+.review{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}
+.review .quote{font-size:20px;line-height:1.5;color:var(--text);margin:12px 0}
+.review .who{color:var(--muted);font-size:14px}
+.review .stats{display:flex;gap:28px;justify-content:flex-end}
+.review .stat b{font-family:"Anton",sans-serif;color:var(--orange);font-size:40px;line-height:1;display:block}
+.review .stat span{color:var(--muted);font-size:13px}
+@media (max-width:700px){.review{grid-template-columns:1fr;gap:22px}.review .stats{justify-content:flex-start}}
+
+/* ---- TROVACI QUI ---- */
+.find h2{font-size:clamp(30px,5.2vw,56px);margin:6px 0 26px}
+.find-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.hours{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.hours .row{display:flex;justify-content:space-between;gap:14px;padding:15px 18px;border-bottom:1px solid var(--line);font-size:15px}
+.hours .row:last-child{border-bottom:none}
+.hours .row span:first-child{color:var(--muted)}
+.hours .row.addr{background:var(--card);font-weight:600}
+.hours .row.addr a{color:var(--orange);text-decoration:none}
+.map{border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:300px;background:#14100e}
+.map iframe{width:100%;height:100%;min-height:300px;border:0;display:block;filter:grayscale(.3) contrast(1.05)}
+@media (max-width:760px){.find-grid{grid-template-columns:1fr}}
 
 /* ---- PRENOTAZIONE ---- */
-.book{margin:26px 0 10px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
-.book h2{font-size:20px;margin-bottom:2px}
-.book .hint{color:var(--muted);font-size:13px;margin-bottom:14px}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600}
-.field input,.field select{width:100%;padding:13px 12px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:16px}
-.field input:focus,.field select:focus{outline:none;border-color:var(--gold)}
+.book-sec{background:linear-gradient(180deg,#100c0a,#0a0908)}
+.book-head{text-align:center;margin-bottom:26px}
+.book-head h2{font-size:clamp(30px,5.4vw,58px);margin-top:6px}
+.book{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px;font-weight:600}
+.field .opt{color:var(--muted);font-weight:400}
+.field input,.field select{width:100%;padding:14px 13px;background:var(--bg2);border:1px solid var(--line);border-radius:11px;color:var(--text);font-size:16px;font-family:inherit}
+.field input:focus,.field select:focus{outline:none;border-color:var(--orange)}
 .slots{display:block}
 .slots-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
-.slot-group-label{color:var(--gold);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px}
+.slot-group-label{color:var(--orange);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px}
 .slot-group-label:first-child{margin-top:0}
-.slot-note{color:#ff9d90;font-size:12.5px;margin-bottom:12px;padding:8px 12px;background:rgba(209,40,31,.12);border:1px solid rgba(209,40,31,.4);border-radius:10px}
+.slot-note{color:var(--orange-2);font-size:12.5px;margin-bottom:12px;padding:8px 12px;background:rgba(224,86,44,.1);border:1px solid rgba(224,86,44,.35);border-radius:10px}
 .slot{flex:1 1 28%;min-width:74px;text-align:center;padding:11px 6px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;transition:.12s}
-.slot:hover{border-color:var(--gold)}
-.slot.sel{background:var(--red);border-color:var(--red);color:#fff}
-.slot.full{opacity:.38;cursor:not-allowed;text-decoration:line-through;color:var(--muted)}
+.slot:hover{border-color:var(--orange)}
+.slot.sel{background:var(--orange);border-color:var(--orange);color:#fff}
+.slot.full{opacity:.4;cursor:not-allowed;text-decoration:line-through;color:var(--muted)}
 .slot .tag{display:block;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.slot.full .tag{color:var(--red-d)}
-.field .opt{color:var(--muted);font-weight:400}
 .privacy{display:flex;align-items:flex-start;gap:10px;margin:2px 0 16px;color:var(--muted);font-size:13px;line-height:1.45;cursor:pointer}
-.privacy input{flex:0 0 auto;width:18px;height:18px;margin-top:1px;accent-color:var(--red);cursor:pointer}
-.privacy a{color:var(--gold);text-decoration:underline}
-.cta{display:block;width:100%;text-align:center;padding:16px;border:none;border-radius:12px;background:var(--red);color:#fff;font-size:18px;font-weight:800;cursor:pointer;margin-top:4px;box-shadow:0 6px 20px rgba(209,40,31,.35)}
-.cta:hover{background:var(--red-d)}
-.cta:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+.privacy input{flex:0 0 auto;width:18px;height:18px;margin-top:1px;accent-color:var(--orange);cursor:pointer}
+.privacy a{color:var(--orange);text-decoration:underline}
+.cta{display:block;width:100%;text-align:center;padding:17px;border:none;border-radius:12px;background:var(--orange);color:#fff;font-size:18px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 8px 22px rgba(224,86,44,.35)}
+.cta:hover{background:var(--orange-2)}
+.cta:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
 .err{color:#ff8a6a;font-size:13px;margin-top:8px;min-height:16px}
-.quick{display:flex;gap:10px;margin:14px 0 4px}
+.quick{display:flex;gap:10px;margin:14px 0 2px}
 .quick a{flex:1;text-align:center;padding:13px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;border:1px solid var(--line);color:var(--text)}
-
-.foot{text-align:center;color:var(--muted);font-size:13px;padding:22px 0 34px}
-.foot .addr{margin-top:6px}
-.foot .address{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:11px 18px;border:1px solid rgba(233,196,106,.45);border-radius:999px;color:var(--gold);font-size:15px;font-weight:700;text-decoration:none}
-.foot .address:hover{background:rgba(233,196,106,.08)}
-
-/* ---- STICKY ---- */
-.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,rgba(8,7,6,1) 60%,rgba(8,7,6,.85));border-top:1px solid var(--line);transition:opacity .25s ease,transform .25s ease}
-.sticky-cta.hidden{opacity:0;transform:translateY(100%);pointer-events:none}
-.sticky-btn{display:block;max-width:560px;margin:0 auto;text-align:center;padding:16px;border-radius:12px;background:var(--red);color:#fff;font-size:18px;font-weight:800;text-decoration:none;box-shadow:0 6px 22px rgba(209,40,31,.45)}
-.sticky-btn:hover{background:var(--red-d)}
+.quick a:hover{border-color:var(--orange)}
 
 /* ---- SUCCESS ---- */
 .success{text-align:center;padding:8px 4px}
-.success .ok{font-size:44px;line-height:1;color:var(--gold)}
-.success h3{font-size:21px;margin:10px 0 6px}
+.success .ok{font-size:44px;line-height:1;color:var(--orange)}
+.success h3{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:26px;margin:12px 0 6px}
 .success p{color:var(--muted);font-size:15px}
 .success .det{margin-top:16px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:left;font-size:15px;line-height:1.9}
 .success .det span{color:var(--muted)}
-.success .again{display:inline-block;margin-top:14px;color:var(--gold);font-size:14px;text-decoration:none}
+.success .again{display:inline-block;margin-top:14px;color:var(--orange);font-size:14px;text-decoration:none}
+
+/* ---- FOOTER ---- */
+.foot{border-top:1px solid var(--line);padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:13.5px}
+.foot .logo{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:18px;color:var(--text);letter-spacing:.02em}
+.foot a{color:var(--muted);text-decoration:none}
+.foot a:hover{color:var(--orange)}
+
+/* ---- STICKY CTA (mobile) ---- */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:70;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,rgba(8,7,6,1) 60%,rgba(8,7,6,.85));border-top:1px solid var(--line);transition:opacity .25s ease,transform .25s ease;display:none}
+.sticky-cta.hidden{opacity:0;transform:translateY(100%);pointer-events:none}
+.sticky-cta .btn{display:flex;width:100%;max-width:560px;margin:0 auto}
+@media (max-width:860px){.sticky-cta{display:block}body{padding-bottom:84px}}
 </style>
 
 <!-- Meta Pixel Code -->
@@ -143,98 +186,168 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
 </head>
 <body>
 
-<div class="brandbar">
-  <span class="mark">I Love Meat</span>
-  <span class="tag">Pianezza</span>
-</div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="logo">I Love Meat<small>Per veri carnivori</small></div>
+  <a class="btn" href="#book">Prenota ora</a>
+</nav>
 
+<!-- HERO -->
 <header class="hero">
-  <div class="hero-media">
-    <img class="hero-img" src="hero.jpg" alt="Carni pregiate di I Love Meat" onerror="this.style.display='none'">
-    <div class="hero-overlay">
-      <span class="hero-badge">Pianezza · Macelleria</span>
-      <h1>La Degustazione di Carne
-        <span class="thin">Dall'antipasto al dolce. Alla griglia pensiamo noi.</span>
-      </h1>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="badge"><span class="dot"></span>Posti limitati stasera</span>
+      <h1 class="display" style="margin-top:16px">Per veri<br>carnivori<br><span class="l2">come te.</span></h1>
+      <p class="lead">Il punto di ritrovo a Pianezza per i veri carnivori. Tagli pregiati, brace a fuoco vivo, cotture come dio comanda.</p>
+      <div class="cta-row">
+        <a class="btn" href="#book">Prenota il tuo tavolo</a>
+        <div class="rate"><span class="stars">★★★★★</span><br><b>4.9</b> · 500+ carnivori soddisfatti</div>
+      </div>
     </div>
-  </div>
-
-  <div class="wrap hero-offer">
-    <a class="hero-address" href="https://www.google.com/maps/search/?api=1&query=Largo+II+Giugno+2+Pianezza+TO" target="_blank" rel="noopener">📍 Largo II Giugno 2, Pianezza (TO)</a>
-    <p class="sub">Un <b>percorso di sola carne</b>: antipasto, primo e secondo alla griglia, dolce a chiudere. <b>Calice di vino, acqua e caffè inclusi.</b> Carni pregiate, grigliate al momento.</p>
-
-    <div class="price-card">
-      <div class="lbl">Menu Degustazione</div>
-      <div class="big">45€ <span>a persona</span></div>
-      <div class="note">Antipasto · Primo · Secondo · Dolce · Calice di vino · Acqua · Caffè</div>
-      <div class="scarcity"><span class="dot"></span>Offerta valida fino al 30 luglio</div>
+    <div class="hero-media">
+      <img src="hero.jpg" alt="Tagli di carne pregiata da I Love Meat" onerror="this.style.display='none'">
+      <span class="badge frame-badge"><span class="dot"></span>Griglia a fuoco vivo</span>
     </div>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="includes" aria-label="L'esperienza">
-    <h2>L'esperienza</h2>
-    <p class="msub">Una serata pensata attorno alla carne, dall'inizio alla fine.</p>
-
-    <p class="story">Ti siedi, e il percorso parte dall'antipasto e ti accompagna fino al dolce. Nel mezzo, il momento che conta: <b>carni pregiate grigliate al momento</b>, cotte come piace a te.</p>
-    <p class="story">Niente da decidere all'ultimo, niente costi a sorpresa: <b>calice di vino, acqua e caffè sono già inclusi</b>. Un'unica esperienza completa, <b>45€ a persona</b>, tutto compreso.</p>
-  </section>
-
-  <section class="book" id="book" aria-label="Prenota il tavolo">
-    <h2>Prenota il tuo tavolo</h2>
-    <p class="hint">Ci vogliono 20 secondi.</p>
-
-    <div class="field">
-      <label for="data">1 · Data</label>
-      <input type="date" id="data" required>
+<!-- OFFERTA -->
+<section class="section">
+  <div class="wrap">
+    <div class="offer">
+      <span class="badge"><span class="dot"></span>Solo per pochi tavoli</span>
+      <h2 class="display">Il Menù Degustazione<br><span class="l2">che devi provare</span></h2>
+      <p class="desc">Dall'antipasto al dolce: un'esperienza di carne sensoriale completa, con <b>acqua, caffè e un calice di vino inclusi</b>.</p>
+      <div class="price">45€<small><span>a persona</span><span>min. 2 persone</span></small></div>
+      <a class="btn" href="#book">Blocca il tuo tavolo</a>
+      <div class="fine">Posti limitati — offerta valida fino ad esaurimento</div>
     </div>
-    <div class="field">
-      <label for="persone">2 · Quante persone</label>
-      <select id="persone" required></select>
-    </div>
-    <div class="field">
-      <label>3 · Orario</label>
-      <div class="slots" id="slots"></div>
-      <input type="hidden" id="orario">
-    </div>
-    <div class="field">
-      <label for="nome">4 · Il tuo nome</label>
-      <input type="text" id="nome" autocomplete="name" placeholder="Nome e cognome" required>
-    </div>
-    <div class="field">
-      <label for="telefono">Telefono</label>
-      <input type="tel" id="telefono" autocomplete="tel" placeholder="Es. 345 688 1360" required>
-    </div>
-    <div class="field">
-      <label for="email">Email</label>
-      <input type="email" id="email" autocomplete="email" placeholder="La tua email">
-    </div>
-    <div class="field">
-      <label for="richieste">Richieste particolari <span class="opt">(facoltativo)</span></label>
-      <input type="text" id="richieste" placeholder="Allergie, seggiolone, tavolo esterno…">
-    </div>
-    <label class="privacy" for="privacy">
-      <input type="checkbox" id="privacy">
-      <span>Ho letto e accetto la <a href="privacy.html" target="_blank" rel="noopener">privacy policy</a> per la gestione della prenotazione.</span>
-    </label>
-
-    <button class="cta" id="cta" disabled>Prenota il tavolo</button>
-    <div class="err" id="err"></div>
-
-    <div class="quick">
-      <a class="call" id="call-link" href="tel:+393456881360">📞 Preferisci chiamare? Chiama ora</a>
-    </div>
-  </section>
-
-  <div class="foot">
-    <div><b>I Love Meat</b></div>
-    <a class="address" href="https://www.google.com/maps/search/?api=1&query=Largo+II+Giugno+2+Pianezza+TO" target="_blank" rel="noopener">📍 Largo II Giugno 2, Pianezza (TO)</a>
-    <div class="addr">Lun–Dom 12:00–14:00 / 19:30–00:00 · Chiuso sabato a pranzo</div>
   </div>
-</main>
+</section>
 
-<div class="sticky-cta"><a class="sticky-btn" href="#book">Prenota il tavolo · 45€</a></div>
+<!-- ESPERIENZA -->
+<section class="section exp">
+  <div class="wrap">
+    <span class="kicker">L'esperienza</span>
+    <h2 class="display">Scegli tu il pezzo.<br><span class="l2">Te lo grigliamo al momento.</span></h2>
+    <div class="gallery">
+      <div class="tile">
+        <img src="galleria-1.jpg" alt="Griglia a fuoco vivo con carne" onerror="this.style.display='none'">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>foto: griglia a fuoco vivo con carne</div>
+      </div>
+      <div class="tile">
+        <img src="galleria-2.jpg" alt="Interno del locale" onerror="this.style.display='none'">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>foto: interno del locale</div>
+      </div>
+      <div class="tile">
+        <img src="galleria-3.jpg" alt="Piatto servito" onerror="this.style.display='none'">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>foto: piatto servito al tavolo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONE -->
+<section class="section">
+  <div class="wrap">
+    <div class="review">
+      <div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">"La carne migliore che ho mangiato in città. Cottura perfetta, servizio veloce."</p>
+        <div class="who">— Marco T., Google Reviews</div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>4.9</b><span>rating medio</span></div>
+        <div class="stat"><b>500+</b><span>recensioni</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TROVACI QUI -->
+<section class="section find">
+  <div class="wrap">
+    <span class="kicker">Dove e quando</span>
+    <h2 class="display">Trovaci qui</h2>
+    <div class="find-grid">
+      <div class="hours">
+        <div class="row"><span>Lunedì – Venerdì</span><span>12:00–14:00 · 19:30–00:00</span></div>
+        <div class="row"><span>Sabato</span><span>Solo cena · 19:30–00:00</span></div>
+        <div class="row"><span>Domenica</span><span>12:00–14:00 · 19:30–00:00</span></div>
+        <div class="row addr"><span>Indirizzo</span><a href="https://www.google.com/maps/search/?api=1&query=Largo+II+Giugno+2+Pianezza+TO" target="_blank" rel="noopener">Largo II Giugno 2, Pianezza (TO)</a></div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps?q=Largo%20II%20Giugno%202%20Pianezza%20TO&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mappa I Love Meat Pianezza"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTAZIONE -->
+<section class="section book-sec">
+  <div class="wrap">
+    <div class="book-head">
+      <span class="kicker">Prenota</span>
+      <h2 class="display">Il tuo tavolo ti aspetta</h2>
+    </div>
+
+    <div class="book" id="book" aria-label="Prenota il tavolo">
+      <div class="field">
+        <label for="data">1 · Data</label>
+        <input type="date" id="data" required>
+      </div>
+      <div class="field">
+        <label for="persone">2 · Quante persone</label>
+        <select id="persone" required></select>
+      </div>
+      <div class="field">
+        <label>3 · Orario</label>
+        <div class="slots" id="slots"></div>
+        <input type="hidden" id="orario">
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label for="nome">4 · Il tuo nome</label>
+          <input type="text" id="nome" autocomplete="name" placeholder="Nome e cognome" required>
+        </div>
+        <div class="field">
+          <label for="telefono">Telefono</label>
+          <input type="tel" id="telefono" autocomplete="tel" placeholder="Es. 345 688 1360" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" autocomplete="email" placeholder="La tua email">
+      </div>
+      <div class="field">
+        <label for="richieste">Richieste particolari <span class="opt">(facoltativo)</span></label>
+        <input type="text" id="richieste" placeholder="Allergie, seggiolone, tavolo esterno…">
+      </div>
+      <label class="privacy" for="privacy">
+        <input type="checkbox" id="privacy">
+        <span>Ho letto e accetto la <a href="privacy.html" target="_blank" rel="noopener">privacy policy</a> per la gestione della prenotazione.</span>
+      </label>
+
+      <button class="cta" id="cta" disabled>Conferma prenotazione</button>
+      <div class="err" id="err"></div>
+
+      <div class="quick">
+        <a class="call" id="call-link" href="tel:+393456881360">📞 Preferisci chiamare? Chiama ora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="wrap foot">
+  <div class="logo">I Love Meat</div>
+  <div>
+    <a href="https://www.google.com/maps/search/?api=1&query=Largo+II+Giugno+2+Pianezza+TO" target="_blank" rel="noopener">Largo II Giugno 2, Pianezza (TO)</a>
+    · <a href="tel:+393456881360">+39 345 688 1360</a>
+  </div>
+</footer>
+
+<div class="sticky-cta"><a class="btn" href="#book">Prenota il tavolo · 45€</a></div>
 
 <script>
 /* ====== CONFIG: cambia SOLO questo blocco ====== */
@@ -256,7 +369,7 @@ window.LP_CONFIG = (function () {
   };
 })();
 
-/* ====== LOGICA PRENOTAZIONE ====== */
+/* ====== LOGICA PRENOTAZIONE (invariata: collegata al Google Sheet) ====== */
 (function () {
   var C = window.LP_CONFIG || {};
   var CAPACITY = C.capacity != null ? C.capacity : 80;
@@ -388,7 +501,7 @@ window.LP_CONFIG = (function () {
       .then(function(){ showSuccess(date,people,slot,nome,tel); })
       .catch(function(){
         // Rete non disponibile: invita a chiamare, senza perdere la prenotazione
-        ctaEl.disabled=false; ctaEl.textContent="Prenota il tavolo";
+        ctaEl.disabled=false; ctaEl.textContent="Conferma prenotazione";
         errEl.textContent="Connessione assente. Chiamaci per confermare: "+PHONE;
       });
   }
