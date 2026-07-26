@@ -45,7 +45,7 @@ a{color:inherit}
 
 /* ---- HERO (testo sopra immagine scurita + fascio di luce) ---- */
 .hero{position:relative;overflow:hidden;min-height:74vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px 0 60px}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:brightness(.4) saturate(1.05);z-index:0}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.5) saturate(1.05);z-index:0}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,9,8,.55),rgba(10,9,8,.3) 42%,rgba(10,9,8,.96) 96%)}
 .hero-glow{position:absolute;z-index:1;left:50%;top:44%;transform:translate(-50%,-50%);width:min(780px,92vw);height:460px;background:radial-gradient(ellipse at center,rgba(209,40,31,.45),rgba(209,40,31,.14) 44%,transparent 70%);filter:blur(12px);pointer-events:none}
 .hero-inner{position:relative;z-index:2;max-width:1120px}
@@ -200,7 +200,7 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
 
 <!-- HERO -->
 <header class="hero">
-  <img class="hero-bg" src="hero.jpg" alt="Tagli di carne pregiata da I Love Meat" onerror="this.style.display='none'">
+  <img class="hero-bg" src="hero-steak.png" alt="Bistecca di carne pregiata da I Love Meat" onerror="this.style.display='none'">
   <span class="hero-glow"></span>
   <div class="wrap hero-inner">
     <span class="badge"><span class="dot"></span>Posti limitati stasera</span>
