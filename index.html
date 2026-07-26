@@ -128,7 +128,9 @@ a{color:inherit}
 .field{margin-bottom:16px}
 .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px;font-weight:600}
 .field .opt{color:var(--muted);font-weight:400}
-.field input,.field select{width:100%;padding:14px 13px;background:var(--bg2);border:1px solid var(--line);border-radius:11px;color:var(--text);font-size:16px;font-family:inherit}
+.field input,.field select{width:100%;max-width:100%;min-width:0;padding:14px 13px;background:var(--bg2);border:1px solid var(--line);border-radius:11px;color:var(--text);font-size:16px;font-family:inherit}
+.field input[type="date"]{-webkit-appearance:none;appearance:none;display:block}
+.field input[type="date"]::-webkit-date-and-time-value{text-align:left}
 .field input:focus,.field select:focus{outline:none;border-color:var(--orange)}
 .slots{display:block}
 .slots-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
