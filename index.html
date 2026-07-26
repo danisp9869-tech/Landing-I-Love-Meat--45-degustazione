@@ -401,33 +401,23 @@ window.LP_CONFIG = (function () {
     var p=date.split("-"); var dow=new Date(+p[0],+p[1]-1,+p[2]).getDay(); // 0=dom … 6=sab
     var saturday=(dow===6);
 
-    if(saturday){
-      var note=document.createElement("div"); note.className="slot-note";
-      note.textContent="Sabato il pranzo è chiuso: disponibile solo a cena.";
-      slotsEl.appendChild(note);
-    }
-
-    var groups=[];
-    if(!saturday) groups.push({label:"Pranzo",slots:LUNCH}); // sabato pranzo chiuso
-    groups.push({label:"Cena",slots:DINNER});
-
-    groups.forEach(function(g){
-      var h=document.createElement("div"); h.className="slot-group-label"; h.textContent=g.label;
-      slotsEl.appendChild(h);
-      var row=document.createElement("div"); row.className="slots-row";
-      g.slots.forEach(function(slot){
-        var full=(bookedFor(date,slot)+people)>(CAPACITY+GAP);
-        var el=document.createElement("div");
-        el.className="slot"+(full?" full":"");
-        el.innerHTML=full?(slot+'<span class="tag">esaurito</span>'):slot;
-        if(!full){el.addEventListener("click",function(){
-          var s=document.querySelectorAll(".slot.sel"); for(var i=0;i<s.length;i++)s[i].classList.remove("sel");
-          el.classList.add("sel"); slotInput.value=slot; startCheckout(); validate();
-        });}
-        row.appendChild(el);
-      });
-      slotsEl.appendChild(row);
+    var row=document.createElement("div"); row.className="slots-row";
+    LUNCH.concat(DINNER).forEach(function(slot){
+      var isLunch=LUNCH.indexOf(slot)>=0;
+      var closed=saturday&&isLunch;                       // sabato pranzo chiuso
+      var full=(bookedFor(date,slot)+people)>(CAPACITY+GAP);
+      var disabled=closed||full;
+      var el=document.createElement("div");
+      el.className="slot"+(disabled?" full":"");
+      el.innerHTML=closed?(slot+'<span class="tag">chiuso</span>')
+                 :(full?(slot+'<span class="tag">esaurito</span>'):slot);
+      if(!disabled){el.addEventListener("click",function(){
+        var s=document.querySelectorAll(".slot.sel"); for(var i=0;i<s.length;i++)s[i].classList.remove("sel");
+        el.classList.add("sel"); slotInput.value=slot; startCheckout(); validate();
+      });}
+      row.appendChild(el);
     });
+    slotsEl.appendChild(row);
     validate();
   }
 
