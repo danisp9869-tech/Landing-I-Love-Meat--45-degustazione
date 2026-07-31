@@ -460,6 +460,9 @@ window.LP_CONFIG = (function () {
     lunch: ["12:00","12:30","13:00","13:30","14:00"],
     dinner: ["19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30"],
     offerName: "Menu Degustazione 45€",
+    // Finisce nella colonna "Offerta" del foglio, condiviso con le bombette.
+    // Tenerla corta e sempre uguale: serve a filtrare, non a essere letta.
+    offerTag: "Degustazione",
     booked: booked
   };
 })();
@@ -472,6 +475,7 @@ window.LP_CONFIG = (function () {
   var PHONE = C.phone || "+393456881360";
   var SHEET_URL = (C.sheetUrl && C.sheetUrl.indexOf("http")===0) ? C.sheetUrl : "";
   var OFFER = C.offerName || "Menu Degustazione 45€";
+  var OFFER_TAG = C.offerTag || "Degustazione";
   var LUNCH = C.lunch || ["12:00","12:30","13:00","13:30","14:00"];
   var DINNER = C.dinner || ["19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30"];
   var BOOKED = C.booked || {};
@@ -588,7 +592,8 @@ window.LP_CONFIG = (function () {
     ctaEl.disabled=true; ctaEl.textContent="Invio in corso…";
     var body=new URLSearchParams({
       data:date, ora:slot, persone:people, nome:nome, telefono:tel,
-      email:email, richieste:richieste, privacy:(privacyEl.checked?"Sì":"No")
+      email:email, richieste:richieste, privacy:(privacyEl.checked?"Sì":"No"),
+      offerta:OFFER_TAG
     });
     fetch(SHEET_URL,{method:"POST",mode:"no-cors",body:body})
       .then(function(){ showSuccess(date,people,slot,nome,tel); })
