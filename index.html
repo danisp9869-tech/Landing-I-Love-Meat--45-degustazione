@@ -417,9 +417,12 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
     <h2 class="display">Trovaci qui</h2>
     <div class="find-grid">
       <div class="hours">
-        <div class="row"><span>Lunedì – Venerdì</span><span>12:00–14:00 · 19:30–00:00</span></div>
-        <div class="row"><span>Sabato</span><span>Solo cena · 19:30–00:00</span></div>
-        <div class="row"><span>Domenica</span><span>12:00–14:00 · 19:30–00:00</span></div>
+        <!-- Agosto: chiusi a pranzo, si serve solo la cena.
+             Orari da rimettere a settembre:
+               Lunedì – Venerdì  12:00–14:00 · 19:30–00:00
+               Sabato            Solo cena · 19:30–00:00
+               Domenica          12:00–14:00 · 19:30–00:00 -->
+        <div class="row"><span>Lunedì – Domenica</span><span>19:30–00:00</span></div>
         <div class="row addr"><span>Indirizzo</span><a href="https://www.google.com/maps/search/?api=1&query=Largo+II+Giugno+2+Pianezza+TO" target="_blank" rel="noopener">Largo II Giugno 2, Pianezza (TO)</a></div>
       </div>
       <div class="map">
@@ -456,8 +459,10 @@ window.LP_CONFIG = (function () {
     phone: "+393456881360",
     // URL dell'app Google Apps Script che scrive nel foglio (link "/exec")
     sheetUrl: "https://script.google.com/macros/s/AKfycbyCVTPWs0z8ZCcdUy3e2j_WC8bWwWa2U4u-LCbhEfsFxL3ErGv2zX8V0OzVZi_Rl6j0Zg/exec",
-    // Orari I Love Meat: Lun–Dom 12:00–14:00 / 19:30–00:00 · Sabato pranzo chiuso
-    lunch: ["12:00","12:30","13:00","13:30","14:00"],
+    // Agosto: chiusi a pranzo, si prenota solo per cena.
+    // Da settembre rimettere: lunch: ["12:00","12:30","13:00","13:30","14:00"]
+    // (il sabato a pranzo resta comunque chiuso, lo gestisce slotState)
+    lunch: [],
     dinner: ["19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30"],
     offerName: "Menu Degustazione 45€",
     // Finisce nella colonna "Offerta" del foglio, condiviso con le bombette.
