@@ -56,7 +56,28 @@ a{color:inherit}
 .hero h1{font-size:clamp(64px,13vw,196px);text-shadow:0 4px 34px rgba(0,0,0,.65)}
 .hero h1 .l2{color:var(--red)}
 .hero .lead{color:#eadfd4;font-size:19px;max-width:42ch;margin:24px auto 32px;text-shadow:0 2px 16px rgba(0,0,0,.8)}
+/* Offerta nell'hero con la strategia coupon delle altre landing I Love Meat
+   (ferragosto, bombette): pillola in oro, nome del tagliere e cosa contiene,
+   prezzo in oro e la scarsità "35 coupon disponibili" subito sopra il
+   bottone, così è l'ultima cosa che si legge prima del clic. */
+.hero .badge{color:var(--gold);border-color:rgba(255,194,51,.55)}
+.hero .badge .dot{background:var(--gold);box-shadow:0 0 0 0 rgba(255,194,51,.6);animation-name:pulse-gold}
+@keyframes pulse-gold{0%{box-shadow:0 0 0 0 rgba(255,194,51,.5)}70%{box-shadow:0 0 0 7px rgba(255,194,51,0)}100%{box-shadow:0 0 0 0 rgba(255,194,51,0)}}
+/* sottotitolo con l'offerta: nome del tagliere in oro e grassetto, poi cosa c'è dentro */
+.hero .offerta-hero{margin-bottom:14px}
+/* stesso trattamento del titolo della card offerta: Anton, maiuscolo */
+.hero .nome-offerta{color:var(--gold);font-family:"Anton","Arial Narrow",sans-serif;font-weight:400;
+  text-transform:uppercase;letter-spacing:.03em;font-size:1.3em;line-height:1}
+.hero .prezzo-hero s{margin-right:10px;color:#cfc6bc;font-size:.55em;vertical-align:middle;
+  text-decoration-line:line-through;text-decoration-color:var(--red);text-decoration-thickness:.1em}
+.hero .prezzo-hero{margin:8px 0 14px;color:var(--gold);font-family:"Anton","Arial Narrow",sans-serif;line-height:1;
+  letter-spacing:.02em;font-size:clamp(42px,7.4vw,86px);text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.hero .prezzo-hero .pre{margin-right:10px;font-family:"Inter",sans-serif;font-size:17px;font-weight:600;color:#cfc6bc;vertical-align:middle}
+.hero .coupon-disp{font-family:"Anton","Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;
+  letter-spacing:.03em;line-height:1.05;font-size:clamp(26px,5.2vw,40px);
+  color:var(--gold);margin:0 auto 18px;max-width:22ch;text-shadow:0 2px 12px rgba(0,0,0,.8)}
 .hero .cta-row{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
+.hero .cta-row .btn{line-height:1.08;text-align:center;max-width:100%}
 .hero .rate{font-size:13.5px;color:#cfc6bc;text-shadow:0 1px 10px rgba(0,0,0,.8)}
 .hero .rate b{color:#fff}
 @media (max-width:600px){
@@ -85,6 +106,9 @@ a{color:inherit}
   .hero .badge{margin-bottom:14px}
   .hero h1{font-size:clamp(64px,8.6vw,124px)}
   .hero .lead{font-size:18px;margin:18px auto 26px}
+  .hero .offerta-hero{margin-bottom:10px}
+  .hero .prezzo-hero{font-size:clamp(34px,4.3vw,60px);margin-bottom:10px}
+  .hero .coupon-disp{font-size:clamp(28px,2.6vw,40px);margin-bottom:14px}
 }
 @media (min-width:1000px) and (max-height:820px){
   .hero h1{font-size:clamp(56px,7.4vw,104px)}
@@ -193,6 +217,8 @@ a{color:inherit}
 .book-head{text-align:center;margin-bottom:26px}
 .book-head h2{font-size:clamp(30px,5.4vw,58px);margin-top:6px}
 .book-head .badge{margin-top:14px}
+.book-head .spiega{margin:14px auto 0;max-width:46ch;color:#ded6cc;font-size:16px;line-height:1.5}
+.book-head .spiega b{color:#fff}
 /* card bianca: dentro serve tutta la scala di colori invertita rispetto al resto */
 .book{--ink:#1c1512;--ink-soft:#6d635b;--field:#f4f0ec;--bordo:#ddd4cb;
   max-width:520px;margin:0 auto;background:#fff;border:1px solid #e6ded6;border-radius:20px;padding:22px;
@@ -226,6 +252,7 @@ a{color:inherit}
 /* ---- SUCCESS ---- */
 .success{text-align:center;padding:8px 4px}
 .success .ok{font-size:44px;line-height:1;color:var(--red)}
+.success .valid-note{margin-top:8px;color:var(--red);font-weight:700;font-size:14.5px}
 .success h3{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:26px;margin:12px 0 6px}
 .success p{color:var(--ink-soft);font-size:15px}
 .success .det{margin-top:16px;background:var(--field);border:1px solid var(--bordo);border-radius:10px;padding:14px;text-align:left;font-size:15px;line-height:1.9}
@@ -269,55 +296,33 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
 <!-- NAV -->
 <nav class="nav">
   <div class="logo">I Love Meat<small>Per veri carnivori</small></div>
-  <a class="btn" href="#book">Prenota ora</a>
+  <a class="btn" href="#book">Riserva il coupon</a>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
   <img class="hero-bg" src="hero.jpg" alt="Costata di manzo marezzata da I Love Meat" onerror="this.style.display='none'">
   <div class="wrap hero-inner">
-    <span class="badge"><span class="dot"></span>Per intenditori</span>
+    <span class="badge"><span class="dot"></span>Solo per domenica a pranzo</span>
     <h1 class="display">Per veri<br>carnivori<br><span class="l2">come te.</span></h1>
-    <p class="lead">Il punto di ritrovo a Pianezza per i veri carnivori. Tagli pregiati da tutto il mondo, brace a fuoco vivo, cotture come dio comanda.</p>
+    <p class="lead offerta-hero"><b class="nome-offerta">Tagliere Maxi King</b>: bruschetta con pomodorini – salsiccia – costine – capocollo – hamburger – ali di pollo – contorno a scelta</p>
+    <p class="prezzo-hero"><span class="pre">A soli</span><s>40€</s>25€</p>
+    <p class="coupon-disp">35 coupon disponibili</p>
     <div class="cta-row">
-      <a class="btn" href="#book">Prenota il tuo tavolo</a>
+      <a class="btn" href="#book">Prenota un tavolo e riserva il coupon</a>
       <div class="rate"><span class="stars">★★★★★</span><br><b>4.9</b> · 500+ carnivori soddisfatti</div>
     </div>
   </div>
 </header>
-
-<!-- OFFERTA -->
-<section class="section">
-  <div class="wrap">
-    <h2 class="display offerta-titolo">Offerta</h2>
-    <div class="offer">
-      <div class="offer-testo">
-        <span class="badge"><span class="dot"></span>Pochi tavoli rimasti</span>
-        <h2 class="display offer-title">
-          <span class="pre">Per due persone</span>
-          Tagliere <span class="l2">Maxi</span>
-        </h2>
-        <p class="sfida display">Se riuscite a finirlo,<br><span class="l2">siete dei King.</span></p>
-        <p class="desc">Componi il tuo tagliere come preferisci al nostro banco carne: <b>8 pezzi a scelta</b> dalla nostra selezione premium.</p>
-        <div class="price"><span class="pre">A soli</span><s>60€</s>45€</div>
-        <p class="valida">Offerta valida fino a fine agosto</p>
-        <a class="btn" href="#book">Blocca offerta</a>
-        <div class="fine">Posti limitati — di solito sold out — prenota ora</div>
-      </div>
-      <figure class="offer-foto">
-        <img src="banco-tagli.jpg" alt="Il banco di I Love Meat con costate, tomahawk, arrosti e spiedini" loading="lazy">
-      </figure>
-    </div>
-  </div>
-</section>
 
 <!-- PRENOTAZIONE -->
 <section class="section book-sec">
   <div class="wrap">
     <div class="book-head">
       <span class="kicker">Prenota</span>
-      <h2 class="display">Il tuo tavolo ti aspetta</h2>
-      <span class="badge"><span class="dot"></span>Pochi tavoli rimasti</span>
+      <h2 class="display">Prenota un tavolo e riscatta l'offerta</h2>
+      <p class="spiega">Compilando il form prenoti un tavolo a tuo nome e potrai usufruire del coupon. <b>Sarà valido solo per la data inserita.</b></p>
+      <span class="badge"><span class="dot"></span>Pochi coupon rimasti</span>
     </div>
 
     <div class="book" id="book" aria-label="Prenota il tavolo">
@@ -368,6 +373,30 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
   </div>
 </section>
 
+<!-- OFFERTA -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="display offerta-titolo">Offerta</h2>
+    <div class="offer">
+      <div class="offer-testo">
+        <span class="badge"><span class="dot"></span>Pochi tavoli rimasti</span>
+        <h2 class="display offer-title">
+          Tagliere <span class="l2">Maxi King</span>
+        </h2>
+        <p class="sfida display">Se riuscite a finirlo,<br><span class="l2">siete dei King.</span></p>
+        <p class="desc">Bruschetta con pomodorini – salsiccia – costine – capocollo – hamburger – ali di pollo – contorno a scelta</p>
+        <div class="price"><span class="pre">A soli</span><s>40€</s>25€</div>
+        <p class="valida">Pochi coupon rimasti</p>
+        <a class="btn" href="#book">Riserva il coupon</a>
+        <div class="fine">Posti limitati — di solito sold out — prenota ora</div>
+      </div>
+      <figure class="offer-foto">
+        <img src="banco-tagli.jpg" alt="Il banco di I Love Meat con costate, tomahawk, arrosti e spiedini" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
 
 <!-- ESPERIENZA -->
 <section class="section exp">
@@ -397,7 +426,7 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
         <div class="tile"><img src="cucina-agnolotti.jpg" alt="Agnolotti al sugo d'arrosto" loading="lazy"></div>
         <div class="tile"><img src="cucina-orecchiette.jpg" alt="Orecchiette al pomodoro con briciole croccanti" loading="lazy"></div>
       </div>
-      <div class="cta-row"><a class="btn" href="#book">Prenota un tavolo</a></div>
+      <div class="cta-row"><a class="btn" href="#book">Riserva il coupon</a></div>
     </div>
   </div>
 </section>
@@ -581,7 +610,8 @@ window.LP_CONFIG = (function () {
     bookEl.innerHTML=
       '<div class="success"><div class="ok">✓</div>'+
       '<h3>Tavolo prenotato, '+nome.split(" ")[0]+'!</h3>'+
-      '<p>Ti aspettiamo da I Love Meat per la Degustazione di Carne. Se serve ti chiamiamo per confermare.</p>'+
+      '<p>Ti aspettiamo da I Love Meat. Se serve ti chiamiamo per confermare.</p>'+
+      '<p class="valid-note">Il coupon sarà valido solo per la data che hai inserito.</p>'+
       '<div class="det">'+
         '<div><span>Data:</span> '+fmtDate(date)+'</div>'+
         '<div><span>Persone:</span> '+people+'</div>'+
