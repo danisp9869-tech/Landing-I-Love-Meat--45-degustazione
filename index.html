@@ -67,7 +67,7 @@ a{color:inherit}
 .hero .offerta-hero{margin-bottom:14px}
 /* stesso trattamento del titolo della card offerta: Anton, maiuscolo */
 .hero .nome-offerta{color:var(--gold);font-family:"Anton","Arial Narrow",sans-serif;font-weight:400;
-  text-transform:uppercase;letter-spacing:.03em;font-size:1.3em;line-height:1}
+  text-transform:uppercase;letter-spacing:.03em;font-size:1.8em;line-height:1}
 .hero .prezzo-hero s{margin-right:10px;color:#cfc6bc;font-size:.55em;vertical-align:middle;
   text-decoration-line:line-through;text-decoration-color:var(--red);text-decoration-thickness:.1em}
 .hero .prezzo-hero{margin:8px 0 14px;color:var(--gold);font-family:"Anton","Arial Narrow",sans-serif;line-height:1;
@@ -310,6 +310,14 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
         if (!reduce) frame.style.transition = 'height 0.2s ease';
         frame.style.height = event.data.height + 'px';
       });
+      if (typeof window.fbq === 'function') {
+        window.addEventListener('message', function (event) {
+          if (!event.data || event.data.type !== 'dinevo:booking-confirmed') return;
+          var frame = document.getElementById('dinevo-booking');
+          if (!frame || event.source !== frame.contentWindow) return;
+          window.fbq('track', 'Purchase', { value: 0, currency: 'EUR' });
+        });
+      }
     </script>
   </div>
 </section>
