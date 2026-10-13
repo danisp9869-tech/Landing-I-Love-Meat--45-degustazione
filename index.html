@@ -314,14 +314,13 @@ src="https://www.facebook.com/tr?id=1752658912398511&ev=PageView&noscript=1"
         if (!reduce) frame.style.transition = 'height 0.2s ease';
         frame.style.height = event.data.height + 'px';
       });
-      if (typeof window.fbq === 'function') {
-        window.addEventListener('message', function (event) {
-          if (!event.data || event.data.type !== 'dinevo:booking-confirmed') return;
-          var frame = document.getElementById('dinevo-booking');
-          if (!frame || event.source !== frame.contentWindow) return;
-          window.fbq('track', 'Purchase', { value: 0, currency: 'EUR' });
-        });
-      }
+      window.addEventListener('message', function (event) {
+        if (!event.data || event.data.type !== 'dinevo:booking-confirmed') return;
+        if (typeof window.fbq !== 'function') return;
+        var frame = document.getElementById('dinevo-booking');
+        if (!frame || event.source !== frame.contentWindow) return;
+        window.fbq('track', 'Schedule');
+      });
     </script>
   </div>
 </section>
